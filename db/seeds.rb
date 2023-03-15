@@ -10,4 +10,8 @@ Admin.create!(
     password: "testtest"
 )
 
+require "csv"
 
+CSV.foreach("db/道内市町村.csv") do 
+    Town.create!(:name)
+end

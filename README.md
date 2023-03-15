@@ -28,7 +28,8 @@
 - IDE：Cloud9
 
 ## 使用素材
-　GoogleMap
+- GoogleMap
+- 「Hokkaido Government Opendata CC-BY4.0（https://creativecommons.org/licenses/by/4.0/deed.ja）」
 
 ## 実装機能リスト
 <https://docs.google.com/spreadsheets/d/1vWwrm6OAVSfeodxhnzGR_otIdRpqCswTNe4AtGh27iI/edit?usp=sharing>
