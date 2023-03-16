@@ -1,6 +1,38 @@
-<h2>Log in</h2>
+<div class="container-fluid">
+  <div class="row my-4 d-flex justify-content-center">
+    <h2>ログイン</h2>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-8">
+      <%= form_with model: @user,url: user_session_path,method: :post do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.email_field,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>パスワード</td>
+          <td><%= f.password_field,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= f.submit "ログイン",class: "btn btn-success text-white" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-4 d-flex justify-content-center">
+    
+  </div>
+  <div class="row mt-4 d-flex justify-content-center">
+    ※ゲストでログインする方は、<%= link_to "こちら", users_guest_sign_in_path, method: :post %>
+  </div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -23,6 +55,5 @@
   </div>
 <% end %>
 
-※ゲストでログインする方は、<%= link_to "こちら", users_guest_sign_in_path, method: :post %><br>
 
 <%= render "public/shared/links" %>
