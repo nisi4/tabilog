@@ -11,6 +11,36 @@
   </head>
 
   <body>
+    <header>
+      <div class="container-fluid">
+        <div class="row my-4 d-flex justify-content-between">
+          <div class="col-sm-4 ml-5">
+            <h2>Tabiログ</h2>
+          </div>
+          <div class="col-sm-5 d-flex">
+            <% if user_signed_in? %>
+              <%= link_to destroy_user_session_path,method: :delete do %>
+                <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i>
+              <% end %>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-user mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-edit mx-2" style="font-size:2rem;"></i>
+            <% elsif admin_signed_in? %>
+                <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-users mx-2" style="font-size:2rem;"></i>
+            <% else %>
+              <%= link_to user_session_path do %>
+                <i class="fas fa-sign-in-alt mx-2" style="font-size:2rem;"></i>
+              <% end %>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-user mx-2" style="font-size:2rem;"></i>
+                <i class="fas fa-edit mx-2" style="font-size:2rem;"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
