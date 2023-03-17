@@ -17,7 +17,7 @@
           <div class="col-sm-4 ml-5">
             <h2>Tabiログ</h2>
           </div>
-          <div class="col-sm-5 d-flex">
+          <div class="col-sm-5 text-right mr-4">
             <% if user_signed_in? %>
               <%= link_to destroy_user_session_path,method: :delete do %>
                 <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i>
