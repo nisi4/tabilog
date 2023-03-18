@@ -18,3 +18,12 @@ CSV.foreach("db/towndata.csv") do |info|
         town_name: info[1]
     )
 end
+    
+require "csv"
+
+CSV.foreach("db/category_data.csv") do |row|
+    Category.create!(
+        id: row[0],
+        category_name: row[1]
+    )
+end
