@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/edit'
-  end
+  get 'posts/new' => "public/posts#new"
+  post "posts" => "public/posts#create"
+  get 'posts' => "public/posts#index"
+  get 'posts/:id/edit' => "public/posts#edit"
+  patch "posts/:id" => "public/posts#update"
+    
   root to: "public/homes#top"
   
   devise_for :users,skip: [:passwords], controllers: {
