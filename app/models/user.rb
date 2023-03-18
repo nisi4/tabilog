@@ -10,4 +10,10 @@ class User < ApplicationRecord
     end
   end
   
+  def full_name
+    self.last_name + self.first_name
+  end
+  
+  has_many :posts,dependent: :destroy
+  
 end

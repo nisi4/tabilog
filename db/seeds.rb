@@ -12,6 +12,9 @@ Admin.create!(
 
 require "csv"
 
-CSV.foreach("db/道内市町村.csv") do 
-    Town.create!(:name)
+CSV.foreach("db/towndata.csv") do |info|
+    Town.create!(
+        id: info[0],
+        town_name: info[1]
+    )
 end
