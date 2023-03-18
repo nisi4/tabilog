@@ -1,7 +1,8 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
-    @user = current.user
+    @user = current_user
+    @towns = Town.all
   end
   
   def create

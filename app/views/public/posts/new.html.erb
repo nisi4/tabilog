@@ -3,7 +3,7 @@
     <h2>ー　<%= @user.user_name %>さんの新たなTabiログ　ー</h2>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="col-sm-8 col-md-6">
+    <div class="col-sm-6">
       <%= form_with model: @post,url: posts_path,method: :post do |f| %>
       <table class="table table-borderless">
         <colspan>
@@ -15,20 +15,18 @@
           <td><%= f.file_field :imege,accept: "image/*",class: "form-control" %></td>
         </tr>
         <tr>
+          <td class="align-middle text-right">市町村名</td>
+          <td><%= f.collection_select(:town_id,@towns,:id,:town_name,{prompt: "--市町村を選択してください--"},class: "form-control") %></td>
+        </tr>
+        <tr>
           <td class="align-middle text-right">パスワード</td>
           <td><%= f.password_field :password,class: "form-control" %></td>
         </tr>
       </table>
       <div class="row mb-4 d-flex justify-content-center">
-        <%= f.submit "ログイン",class: "btn btn-success text-white" %>
+        <%= f.submit "記録",class: "btn btn-success text-white" %>
       </div>
       <% end %>
     </div>
-  </div>
-  <div class="row mt-4 d-flex justify-content-center">
-    ※アカウント登録がお済みでない方は、<%= link_to "こちら",new_user_registration_path %>
-  </div>
-  <div class="row mt-4 d-flex justify-content-center">
-    ※ゲストでログインする方は、<%= link_to "こちら", users_guest_sign_in_path, method: :post %>
   </div>
 </div>
