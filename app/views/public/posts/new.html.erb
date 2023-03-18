@@ -3,7 +3,7 @@
     <h2>ー　<%= @user.user_name %>さんの新たなTabiログ　ー</h2>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="col-sm-6">
+    <div class="col-sm-7 mr-4">
       <%= form_with model: @post,url: posts_path,method: :post do |f| %>
       <table class="table table-borderless">
         <colspan>
@@ -12,15 +12,42 @@
         </colspan>
         <tr>
           <td class="align-middle text-right">Tabi画像</td>
-          <td><%= f.file_field :imege,accept: "image/*",class: "form-control" %></td>
+          <td><%= f.file_field :image,accept: "image/*",class: "form-control" %></td>
         </tr>
         <tr>
           <td class="align-middle text-right">市町村名</td>
           <td><%= f.collection_select(:town_id,@towns,:id,:town_name,{prompt: "--市町村を選択してください--"},class: "form-control") %></td>
         </tr>
         <tr>
-          <td class="align-middle text-right">パスワード</td>
-          <td><%= f.password_field :password,class: "form-control" %></td>
+          <td class="align-middle text-right">カテゴリ</td>
+          <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">タイトル</td>
+          <td><%= f.text_field :title,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">おすすめ度</td>
+          <!--おすすめ度javascript-->
+          <td>
+            <div id="post_raty"></div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+              let raty_elem = document.querySelector('#post_raty');
+              raty_elem.innerHTML = ""
+              let option = {  
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'post[star]',
+                };
+              raty(raty_elem,option);
+              });
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">説明</td>
+          <td><%= f.text_area :body,class: "form-control" %></td>
         </tr>
       </table>
       <div class="row mb-4 d-flex justify-content-center">
