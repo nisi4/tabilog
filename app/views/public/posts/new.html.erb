@@ -14,10 +14,12 @@
           <td class="align-middle text-right">Tabi画像</td>
           <td><%= f.file_field :image,accept: "image/*",class: "form-control" %></td>
         </tr>
+        <!--seedファイルの市町村データから選択させる-->
         <tr>
           <td class="align-middle text-right">市町村名</td>
           <td><%= f.collection_select(:town_id,@towns,:id,:town_name,{prompt: "--市町村を選択してください--"},class: "form-control") %></td>
         </tr>
+        <!--seedファイルのカテゴリデータから選択させる-->
         <tr>
           <td class="align-middle text-right">カテゴリ</td>
           <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
