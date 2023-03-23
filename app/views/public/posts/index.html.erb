@@ -1,3 +1,12 @@
 <div class="container-fluid">
+    <div class="row d-flex justify-content-center mt-5 mb-3">
+        <% if @keyword.present? %>
+            <h2>ー "<%= @keyword %>" で検索 ー</h2>
+        <% elsif @name.present? %>
+            <h2>ー "<%= @name %>" で検索 ー</h2>
+        <% else %>
+            <h2>ー 投稿一覧 ー</h2>
+        <% end %>
+    </div>
     <%= render "posts",posts: @posts %>
 </div>
