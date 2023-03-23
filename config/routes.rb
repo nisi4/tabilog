@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get "search" => "public/posts#search_keyword"
+  
   get 'posts/new' => "public/posts#new"
   post "posts" => "public/posts#create"
   get 'posts' => "public/posts#index"

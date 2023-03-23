@@ -2,12 +2,23 @@
   <div class="row mb-5">
     <div class="col-md-4 d-flex align-items-center">
       <div class="col align-middle text-center">
-        <h1 class="display-1 mb-4">Tabiログ</h1>
-        <h3 class="mb-5">ー 北海道を遊び尽くす ー</h3>
+        <h1 class="display-1 mb-3">Tabiログ</h1>
+        <h3 class="mb-4">ー 北海道を遊び尽くす ー</h3>
+        <div class="row mb-5">
+          <div class="col-6 col-md-12"></div>
+          <div class="col-6 col-md-12 text-left text-md-center">
+            <div class="search_form">
+              <%= form_with url:search_path,local: true,method: :get do |f| %>
+                <%= f.text_field :keyword,value: @keyword,placeholder: "キーワードから探す" %>
+                <%= f.submit "検索",class: "btn-sm btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-7">
-      <input id="address" type="textbox" placeholder="市町村名">
+      <input id="address" type="textbox" placeholder="場所を探す">
       <input type="button" value="検索" onclick="codeAddress()">
       
       <div id='map'></div>
