@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <h3>ー <%= @user.user_name %>さんのTabiログ ー</h3>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <%= image_tag @user.get_profile_image(200,200) %><br>
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <table class="table">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <%= render 'public/posts/posts',posts: @posts %>
+        </div>
+    </div>
+</div>
