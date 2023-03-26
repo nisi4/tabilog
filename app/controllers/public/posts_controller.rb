@@ -37,6 +37,12 @@ class Public::PostsController < ApplicationController
   
   def update
   end
+  
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to mypage_show_path(post.user.id)
+  end
 
 private
   def post_params

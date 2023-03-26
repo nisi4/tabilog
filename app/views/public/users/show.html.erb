@@ -1,2 +1,63 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row my-4 d-flex justify-content-center">
+                <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
+            </div>
+            <div class="row mb-5">
+                <div class="col-6">
+                    <div class="row d-flex justify-content-center">
+                        <%= image_tag @user.get_profile_image(150,150) %><br>
+                    </div>
+                    <div class="row mt-4 d-flex justify-content-center">
+                        <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-info" %>
+                    </div>
+                </div>
+                <div class="col-6 pl-0 pr-5">
+                    <table class="table table-borderless mb-0">
+                        <colspan>
+                            <col width="60%">
+                            <col width="35%">
+                            <col width="5%">
+                        </colspan>
+                        <tr class="border-bottom">
+                            <td>ユーザー名：</td>
+                            <td colspan="2"><%= @user.user_name %></td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>投稿数：</td>
+                            <td align="center"><%= @posts.count %></td>
+                            <td>件</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>訪問数：</td>
+                            <td align="center"><%= @visit_town %></td>
+                            <td>/179</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>フォロー：</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>フォロワー：</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>自己紹介：</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="border">
+                            <td height="120" rowspan="3"><%= @user.introduction %></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <%= render 'user_posts',posts: @posts %>
+        </div>
+    </div>
+</div>

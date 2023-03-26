@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get 'posts/new' => "public/posts#new"
   post "posts" => "public/posts#create"
   get 'posts' => "public/posts#index"
-  get 'posts/:id/edit' => "public/posts#edit"
-  patch "posts/:id" => "public/posts#update"
+  get 'posts/:id/edit' => "public/posts#edit",as: "edit_post"
+  patch "posts/:id" => "public/posts#update",as: "update_post"
+  delete "posts/:id" => "public/posts#destroy",as: "destroy_post"
     
   root to: "public/homes#top"
   

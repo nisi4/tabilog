@@ -42,6 +42,14 @@
                     <p class="card-text"><%= post.body %></p>
                     <small class="text-muted">市町村：<%= post.town.town_name %>　カテゴリ：<%= post.category.category_name %></small>
                 </div>
+                <% if current_page?(mypage_show_path) %>
+                <div class="row">
+                    <div class="col">
+                        <%= link_to "編集",edit_post_path(post.id),class: "btn btn-success" %>    
+                        <%= link_to "削除",destroy_post_path(post.id),method: :delete,class: "btn btn-danger" %>    
+                    </div>
+                </div>
+                <% end %>
             </div>
         </div>
         <% end %>
