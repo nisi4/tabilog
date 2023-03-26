@@ -1,50 +1,70 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5">
-            <div class="row">
-                <h3>ー <%= @user.user_name %>さんのTabiログ ー</h3>
+            <div class="row my-4 d-flex justify-content-center">
+                <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-6">
-                    <div class="row">
-                        <%= image_tag @user.get_profile_image(200,200) %><br>
+                    <div class="row d-flex justify-content-center">
+                        <%= image_tag @user.get_profile_image(150,150) %><br>
                     </div>
-                    <div class="row">
-                        
+                    <div class="row mt-4 d-flex justify-content-center">
+                        <button class="btn btn-info">フォローする</button>
+                        <table class="table table-borderless my-3 mx-4">
+                            <colspan>
+                                <col width="50%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colspan>
+                            <tr>
+                                <td>フォロー</td>
+                                <td></td>
+                                <td>人</td>
+                            </tr>
+                            <tr>
+                                <td>フォロワー</td>
+                                <td></td>
+                                <td>人</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="col-6">
-                    <table class="table">
-                        <tr>
+                <div class="col-6 pl-0 pr-5">
+                    <table class="table table-borderless mb-0">
+                        <colspan>
+                            <col width="10%">
+                            <col width="85%">
+                            <col width="5%">
+                        </colspan>
+                        <tr class="border-bottom">
+                            <td>Name</td>
+                            <td colspan="2"><%= @user.user_name %></td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>Posts</td>
+                            <td><%= @posts.count %></td>
+                            <td>件</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>Visit</td>
                             <td></td>
-                            <td></td>
+                            <td>/179</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>Introduction</td>
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr class="border">
+                            <td height="120" rowspan="3"><%= @user.introduction %></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
         <div class="col-md-7">
-            <%= render 'public/posts/posts',posts: @posts %>
+            <%= render 'user_posts',posts: @posts %>
         </div>
     </div>
 </div>
