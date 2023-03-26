@@ -10,7 +10,9 @@
                             
                         </div>
                         <div class="col-6 text-right">
-                            ＠<%= post.user.user_name %>
+                            <%= link_to mypage_path(post.user.id) do %>
+                                ＠<%= post.user.user_name %>
+                            <% end %>
                         </div>
                     </div>
                     <div class="row mb-2">

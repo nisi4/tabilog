@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'users/:id' => "public/users#index",as: "mypage"
-  get 'users/:id/show' => "public/users#show"
-  get 'users/:id/edit' => "public/users#edit"
-  patch "users/:id" => "public/users#update"
     
   get "search_keyword" => "public/posts#search_keyword"
   get "search_name" => "public/posts#search_name"
@@ -27,6 +22,11 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations,:passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
+  get 'users/:id' => "public/users#index",as: "mypage"
+  get 'users/:id/show' => "public/users#show"
+  get 'users/:id/edit' => "public/users#edit"
+  patch "users/:id" => "public/users#update"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
