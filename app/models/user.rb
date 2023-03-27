@@ -24,11 +24,20 @@ class User < ApplicationRecord
   def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join("app/assets/images/hito.jpg")
-      profile_image.attach(io: File.open(file_path),filename: "default-image.jpg",content_type: "image/jpeg")
+      profile_image.attach(io: File.open(file_path),filename: "default-image.jpg",content_type: "image/jpeg,image/png")
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  validate :profile_image_type
+  
   has_many :posts,dependent: :destroy
+  
+  private
+  def profile_image_type
+    if !profile_image.blob.content_type.in?(%("image/jpeg image/png"))
+      errors.add(:profile_image, "はjpeg又はpng形式でアップロードしてください")
+    end
+  end
   
 end

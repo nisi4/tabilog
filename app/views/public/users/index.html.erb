@@ -7,7 +7,7 @@
             <div class="row mb-5">
                 <div class="col-6">
                     <div class="row d-flex justify-content-center">
-                        <%= image_tag @user.get_profile_image(150,150) %><br>
+                        <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
                         <button class="btn btn-info">フォローする</button>
@@ -57,7 +57,7 @@
                             <td></td>
                         </tr>
                         <tr class="border">
-                            <td height="120" rowspan="3"><%= @user.introduction %></td>
+                            <td height="120" colspan="3"><%= @user.introduction %></td>
                         </tr>
                     </table>
                 </div>

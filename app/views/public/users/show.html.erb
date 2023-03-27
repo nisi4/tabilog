@@ -7,7 +7,7 @@
             <div class="row mb-5">
                 <div class="col-6">
                     <div class="row d-flex justify-content-center">
-                        <%= image_tag @user.get_profile_image(150,150) %><br>
+                        <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
                         <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-info" %>
@@ -16,8 +16,8 @@
                 <div class="col-6 pl-0 pr-5">
                     <table class="table table-borderless mb-0">
                         <colspan>
-                            <col width="60%">
-                            <col width="35%">
+                            <col width="65%">
+                            <col width="30%">
                             <col width="5%">
                         </colspan>
                         <tr class="border-bottom">
@@ -50,7 +50,7 @@
                             <td></td>
                         </tr>
                         <tr class="border">
-                            <td height="120" rowspan="3"><%= @user.introduction %></td>
+                            <td height="120" colspan="3"><%= @user.introduction %></td>
                         </tr>
                     </table>
                 </div>
