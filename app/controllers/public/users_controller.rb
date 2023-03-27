@@ -16,9 +16,13 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
   
   def update
+    user = User.find(params[:id])
+    user.update(user_params)
+    redirect_to mypage_show_path(user.id)
   end
   
   def destroy
@@ -30,6 +34,10 @@ class Public::UsersController < ApplicationController
     unless user.id == current_user.id
       redirect_to mypage_path(current_user.id)
     end
+  end
+  
+  def user_params
+    params.require(:user).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:user_name,:image,:introduction,:email)
   end
   
 end
