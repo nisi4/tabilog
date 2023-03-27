@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="row mb-5">
+    <div class="col-md-4 d-flex align-items-center">
+      <div class="col align-middle text-center">
+        <h1 class="display-1 mb-3">Tabiログ</h1>
+        <h3 class="mb-5">ー 北海道を遊び尽くす ー</h3>
+        <div class="row mb-5">
+          <div class="col-6 col-md-12 mb-md-3 text-left text-md-center">
+            <div class="search_form">
+              <%= form_with url:search_name_path,local: true,method: :get do |f| %>
+                <%= f.text_field :name,value: @name,placeholder: "市町村名又はユーザー名" %>
+                <%= f.submit "検索",class: "btn-sm btn-primary" %>
+              <% end %>
+            </div>  
+          </div>
+          <div class="col-6 col-md-12 text-left text-md-center">
+            <div class="search_form">
+              <%= form_with url:search_keyword_path,local: true,method: :get do |f| %>
+                <%= f.text_field :keyword,value: @keyword,placeholder: "キーワードから探す" %>
+                <%= f.submit "検索",class: "btn-sm btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <input id="address" type="textbox" placeholder="地図上で場所を探す">
+      <input type="button" value="検索" onclick="codeAddress()">
+      
+      <div id='map'></div>
+      
+      <style>
+      #map {
+        height: 600px;
+        width: auto;
+      }
+      </style>
+      
+      <script>
+      let map
+      
+      function initMap(){
+        geocoder = new google.maps.Geocoder()
+      
+        map = new google.maps.Map(document.getElementById('map'), {
+          //latが緯度、lngが経度を示す
+          center: {lat: 43.44028, lng:142.78864},
+          //数値は0〜21まで指定可能
+          zoom: 7,
+        });
+        //positionに指定した座標にピンを表示させます
+        marker = new google.maps.Marker({
+          position:  {lat:43.06927, lng:141.35098},
+          map: map
+        });
+        
+        marker = new google.maps.Marker({
+          position:  {lat:43.80397, lng:143.89578},
+          map: map
+        });
+      }
+      
+      let geocoder
+      
+      //検索フォームのボタンが押された時に実行
+      function codeAddress(){
+        //検索フォームの入力内容を取得
+        let inputAddress = document.getElementById('address').value;
+      
+        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+          //該当する検索結果がヒットした時に、地図の中心を検索結果の緯度経度に更新する
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+          } else {
+            //検索結果が何もなかった場合に表示
+            alert('該当する結果がありませんでした：' + status);
+          }
+        });   
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDGWzopEm8Y0rw8juiO6jsXfSoc89y32U&callback=initMap" async defer></script>  
+    </div>
+  </div>
+  <div class="row my-5 pt-5 d-flex justify-content-center">
+    <div class="display-4">ー　タイムライン　ー</div>
+  </div>
+  <%= render 'public/posts/posts',posts: @posts %>
+</div>

@@ -33,9 +33,15 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+    @towns = Town.all
+    @categories = Category.all
   end
   
   def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to mypage_show_path(@post.user_id)
   end
   
   def destroy

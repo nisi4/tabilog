@@ -1,2 +1,64 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container-fluid">
+  <div class="row mt-5 mb-4 d-flex justify-content-center">
+    <h2>ー　Tabiログ編集　ー</h2>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @post,url: update_post_path(@post.id),method: :patch do |f| %>
+      <table class="table table-borderless">
+        <colspan>
+          <col width="30%">
+          <col width="70%">
+        </colspan>
+        <tr>
+          <td class="align-middle text-right">Tabi画像</td>
+          <td><%= f.file_field :image,accept: "image/*" %></td>
+        </tr>
+        <!--seedファイルの市町村データから選択させる-->
+        <tr>
+          <td class="align-middle text-right">市町村名</td>
+          <td><%= f.collection_select(:town_id,@towns,:id,:town_name,{prompt: "--市町村を選択してください--"},class: "form-control") %></td>
+        </tr>
+        <!--seedファイルのカテゴリデータから選択させる-->
+        <tr>
+          <td class="align-middle text-right">カテゴリ</td>
+          <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">タイトル</td>
+          <td><%= f.text_field :title,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">おすすめ度</td>
+          <!--おすすめ度javascript-->
+          <td>
+            <div id="post_raty"></div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+              let raty_elem = document.querySelector('#post_raty');
+              raty_elem.innerHTML = ""
+              let option = {  
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'post[star]',
+                };
+              raty(raty_elem,option);
+              });
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">説明</td>
+          <td><%= f.text_area :body,class: "form-control" %></td>
+        </tr>
+      </table>
+      <div class="row mb-4 d-flex justify-content-center">
+        <%= f.submit "変更を保存",class: "btn btn-success text-white" %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+        
+    </div>
+  </div>
+</div>
