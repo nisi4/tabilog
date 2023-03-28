@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  get 'admin/users' => "admin/users#index"
   get 'admin' => "admin/homes#top"
   
   get "search_keyword" => "public/posts#search_keyword"

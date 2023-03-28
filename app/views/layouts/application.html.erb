@@ -42,7 +42,9 @@
               <%= link_to admin_path,class: "text-dark",style: "text-decoration:none;" do %>
                 <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
               <% end %>
+              <%= link_to admin_users_path,class: "text-dark",style: "text-decoration:none;" do %>
                 <i class="fas fa-users mx-2" style="font-size:2rem;"></i>
+              <% end %>
             <!--ログアウト中-->
             <% else %>
               <%= link_to user_session_path,class: "text-dark",style: "text-decoration:none;" do %>
