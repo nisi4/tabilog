@@ -36,8 +36,10 @@
               <% end %>
             <!--管理者でログイン中-->
             <% elsif admin_signed_in? %>
+              <%= link_to destroy_admin_session_path,method: :delete,class: "text-dark",style: "text-decoration:none;" do %>
                 <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i>
-              <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
+              <% end %>
+              <%= link_to admin_path,class: "text-dark",style: "text-decoration:none;" do %>
                 <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
               <% end %>
                 <i class="fas fa-users mx-2" style="font-size:2rem;"></i>
