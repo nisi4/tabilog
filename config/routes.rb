@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   get 'posts/:id/edit' => "public/posts#edit",as: "edit_post"
   patch "posts/:id" => "public/posts#update",as: "update_post"
   delete "posts/:id" => "public/posts#destroy",as: "destroy_post"
-    
+  
+  resources :post do
+    namespace :public do
+      resource :favorites,only: [:create,:destroy]
+    end
+  end
+
   root to: "public/homes#top"
   
   devise_for :users,skip: [:passwords], controllers: {

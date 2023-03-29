@@ -32,6 +32,7 @@ class User < ApplicationRecord
   validate :profile_image_type
   
   has_many :posts,dependent: :destroy
+  has_many :favorites,dependent: :destroy
   
   private
   def profile_image_type
