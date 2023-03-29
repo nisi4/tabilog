@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
     
   get 'admin/users' => "admin/users#index"
+  patch "admin/users/:id" => "admin/users#update",as: "update_user"
   get 'admin' => "admin/homes#top"
   
   get "search_keyword" => "public/posts#search_keyword"

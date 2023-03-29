@@ -7,19 +7,19 @@
     </div>
     <div class="row">
         <div class="col">
-            <table class="table">
-                <tr>
+            <table class="table table-bordered table-hover">
+                <tr class="table-active" align="center">
                     <th>ユーザーID</th>
                     <th>名前</th>
                     <th>メールアドレス</th>
                     <th>ステータス</th>
                 </tr>
                 <% @users.each do |user| %>
-                <tr>
+                <tr align="center">
                     <td><%= user.id %></td>
                     <td><%= user.full_name %></td>
                     <td><%= user.email %></td>
-                    <td></td>
+                    <td><%= user.status == false ? "有効" : "停止" %></td>
                 </tr>
                 <% end %>
             </table>
