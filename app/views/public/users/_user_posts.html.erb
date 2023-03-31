@@ -7,7 +7,7 @@
                 <div class="card-body px-3 pb-3 pt-0">
                     <div class="row mb-3">
                         <div class="col-6">
-                            <% if post.favorited_by?(current_user) %>
+                            <% if user_signed_in? && post.favorited_by?(current_user) %>
                                 <p>
                                     <%= link_to post_public_favorites_path(post),method: :delete,class: "text-dark",style: "text-decoration:none;" do %>
                                         <span class="text-danger">♥</span><%= post.favorites.count %>件
