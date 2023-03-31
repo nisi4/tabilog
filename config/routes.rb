@@ -6,13 +6,6 @@ Rails.application.routes.draw do
   
   get "search_keyword" => "public/posts#search_keyword"
   
-  get 'posts/new' => "public/posts#new"
-  post "posts" => "public/posts#create"
-  get 'posts' => "public/posts#index"
-  get 'posts/:id/edit' => "public/posts#edit",as: "edit_post"
-  patch "posts/:id" => "public/posts#update",as: "update_post"
-  delete "posts/:id" => "public/posts#destroy",as: "destroy_post"
-  
   resources :post do
     namespace :public do
       resource :favorites,only: [:create,:destroy]
