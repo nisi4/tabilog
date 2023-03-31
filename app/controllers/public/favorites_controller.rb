@@ -14,4 +14,10 @@ class Public::FavoritesController < ApplicationController
         favorite.destroy
         redirect_back(fallback_location: root_path)
     end
+    
+    def index
+        @user = User.find(params[:user_id])
+        @posts = @user.favorites.all
+        @posts = @user.favorites.all.order(created_at: :desc)
+    end
 end

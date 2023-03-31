@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resource :favorites,only: [:create,:destroy]
     end
   end
+  
+  get "favorites/:user_id" => "public/favorites#index",as: "user_favorites"
 
   root to: "public/homes#top"
   
