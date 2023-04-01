@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   
-  get "favorites/:user_id" => "public/favorites#index",as: "user_favorites"
+  get "user/:user_id/public/favorites" => "public/favorites#index",as: "user_favorites"
 
   root to: "public/homes#top"
   
