@@ -24,12 +24,10 @@ class User < ApplicationRecord
   def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join("app/assets/images/hito.jpg")
-      profile_image.attach(io: File.open(file_path),filename: "default-image.jpg",content_type: "image/jpeg,image/png")
+      profile_image.attach(io: File.open(file_path),filename: "default-image.jpg",content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  validate :profile_image_type
   
   has_many :posts,dependent: :destroy
   has_many :favorites,dependent: :destroy
@@ -42,11 +40,19 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   
-  private
-  def profile_image_type
-    if !profile_image.blob.content_type.in?(%("image/jpeg image/png"))
-      errors.add(:profile_image, "はjpeg又はpng形式でアップロードしてください")
-    end
+  # フォローした時の処理
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  
+  # フォローを外す時の処理
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  
+  # フォローしているか判定
+  def following?(user)
+    followings.include?(user)
   end
   
 end

@@ -10,7 +10,11 @@
                         <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <button class="btn btn-info">フォローする</button>
+                        <% if current_user.following?(@user) %>
+                            <%= link_to "フォローを外す", unfollow_path(@user.id),method: :delete,class: "btn btn-primary" %>
+                        <% else %>
+                            <%= link_to "フォローする", follow_path(@user.id),method: :post,class: "btn btn-primary" %>
+                        <% end %>
                         <table class="table table-borderless my-3 mx-4">
                             <colspan>
                                 <col width="50%">

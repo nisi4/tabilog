@@ -6,13 +6,18 @@ Rails.application.routes.draw do
   
   get "search_keyword" => "public/posts#search_keyword"
   
-  resources :post do
-    namespace :public do
-      resource :favorites,only: [:create,:destroy]
-    end
+  namespace :public do
+    resources :posts
   end
   
+  post "public/posts/:post_id/favorites" => "public/favorites#create",as: "favorite"
+  delete "public/posts/:post_id/favorites" => "public/favorites#destroy",as: "unfavorite"
   get "user/:user_id/public/favorites" => "public/favorites#index",as: "user_favorites"
+  
+  post "public/users/:user_id/relationships" => "public/relationships#create",as: "follow"
+  delete "public/users/:user_id/relationships" => "public/relationships#destroy",as: "unfollow"
+  get "public/users/:user_id/followings" => "public/relationships#followings",as: "following"
+  get "public/users/:user_id/followers" => "public/relationships#followers",as: "follower"
 
   root to: "public/homes#top"
   
