@@ -21,14 +21,24 @@
                                 <col width="25%">
                                 <col width="25%">
                             </colspan>
+                            <%= link_to following_path(@user.id) do %>
                             <tr>
                                 <td>フォロー</td>
-                                <td></td>
+                                <td>
+                                    <%= link_to following_path(@user.id) do %>
+                                    <%= @user.followings.count %>
+                                    <% end %>
+                                </td>
                                 <td>人</td>
                             </tr>
+                            <% end %>
                             <tr>
                                 <td>フォロワー</td>
-                                <td></td>
+                                <td>
+                                    <%= link_to follower_path(@user.id) do %>
+                                    <%= @user.followers.count %>
+                                    <% end %>
+                                </td>
                                 <td>人</td>
                             </tr>
                         </table>
