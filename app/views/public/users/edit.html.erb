@@ -1,27 +1,27 @@
 <div class="container-fluid">
-    <div class="row my-4 d-flex justify-content-center">
-        <h2 class="h4 md-h2">ー　<%= @user.user_name %>さんのプロフィール編集　ー</h2>
+    <div class="row mt-5 d-flex justify-content-center">
+        <h2 class="h3 md-h2">ー　<%= @user.user_name %>さんのプロフィール編集　ー</h2>
     </div>
-    <div class="row mt-md-5 d-flex justify-content-center">
-        <div class="col-sm-10">
+    <div class="row mt-4 d-flex justify-content-center">
+        <div class="col-11 col-md-10 col-lg-8">
             <%= form_with model: @user,url: mypage_update_path(@user.id),method: :patch do |f| %>
-            <div class="row mb-5">
-                <div class="col-5">
-                    <div class="row d-flex justify-content-center">
-                        <%= image_tag @user.get_profile_image(150,150) %><br>
+            <div class="row mb-2 d-flex justify-content-center">
+                <div class="col-5 col-md-3">
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <%= image_tag @user.get_profile_image(100,100) %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center ml-4">
                         <%= f.file_field :profile_image,accept: "/image*" %>    
                     </div>
                 </div>
-                <div class="col-7 pl-0 pr-2 pr-md-5">
+                <div class="col-7">
                     <table class="table table-borderless mb-0">
                         <colspan>
                             <col width="35%">
                             <col width="65%">
                         </colspan>
                         <tr>
-                            <td class="align-middle pr-0">ユーザー名：</td>
+                            <td class="align-middle">ユーザー名：</td>
                             <td><%= f.text_field :user_name,class: "form-control" %></td>
                         </tr>
                         <tr>
@@ -58,7 +58,7 @@
                           　<td><%= f.text_field :first_name_kana,class: "form-control" %></td>
                         </tr>
                         <tr>
-                          　<td class="align-middle">メールアドレス</td>
+                          　<td class="align-middle">メール</td>
                           　<td colspan="4"><%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %></td>
                         </tr>
                     </table>
