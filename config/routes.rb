@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get "search_keyword" => "public/posts#search_keyword"
   
   namespace :public do
-    resources :posts
+    resources :posts do
+      resources :comments,only: [:index,:create]
+    end
   end
   
   post "public/posts/:post_id/favorites" => "public/favorites#create",as: "favorite"

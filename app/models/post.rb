@@ -5,6 +5,7 @@ class Post < ApplicationRecord
     belongs_to :town
     belongs_to :category
     has_many :favorites,dependent: :destroy
+    has_many :comments,dependent: :destroy
     
     def self.search(keyword)
         joins(:town,:user).where(["title like? OR body like? OR town_name like? OR user_name like?","%#{keyword}%","%#{keyword}%","%#{keyword}%","%#{keyword}%"])

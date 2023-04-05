@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row mt-5 mb-4 d-flex justify-content-center">
+        <span class="h2">ー　コメント一覧　ー</span>
+    </div>
+    <div class="row mb-5 d-flex justify-content-center">
+        <div class="col-8 col-sm-5">
+            <% @post.comments.each do |post_comment| %>
+            <table class="table table-borderless border-bottom">
+                <col width="15%">
+                <col width="40%">
+                <col width="45%">
+                <tr>
+                    <td class="align-middle"><%= image_tag post_comment.user.get_profile_image(30,30),class: "rounded-circle" %></td>
+                    <td class="align-middle"><%= post_comment.user.user_name %></td>
+                    <td class="align-middle"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"><%= post_comment.comment %></td>
+                </tr>
+            </table>
+            <% end %>
+        </div>
+    </div>
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-8 col-sm-4">
+            <%= form_with model: @comment,url: public_post_comments_path,method: :post do |f| %>
+            <div class="row my-4">
+                <div class="col">
+                    <%= f.text_area :comment,placeholder: "コメントをここに",class: "form-control" %>    
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <%= f.submit "投稿する",class: "btn btn-primary text-center" %>    
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
