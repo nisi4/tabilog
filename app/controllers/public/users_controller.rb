@@ -25,6 +25,18 @@ class Public::UsersController < ApplicationController
     redirect_to mypage_show_path(user.id)
   end
   
+  def release
+    @user = User.find(params[:user_id])
+    @user.released! unless @user.released?
+    redirect_to mypage_show_path(@user.id)
+  end
+  
+  def nonrelease
+    @user = User.find(params[:user_id])
+    @user.nonreleased! unless @user.nonreleased?
+    redirect_to mypage_show_path(@user.id)
+  end
+  
   private
   def is_matching_login_user
     user = User.find(params[:id])
