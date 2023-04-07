@@ -26,13 +26,13 @@ class Public::UsersController < ApplicationController
   end
   
   def release
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     @user.released! unless @user.released?
     redirect_to mypage_show_path(@user.id)
   end
   
   def nonrelease
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     @user.nonreleased! unless @user.nonreleased?
     redirect_to mypage_show_path(@user.id)
   end

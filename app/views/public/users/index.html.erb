@@ -10,7 +10,7 @@
                         <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <% if current_user.following?(@user) %>
+                        <% if user_signed_in? && current_user.following?(@user) %>
                             <%= link_to "フォローを外す", unfollow_path(@user.id),method: :delete,class: "btn btn-primary" %>
                         <% else %>
                             <%= link_to "フォローする", follow_path(@user.id),method: :post,class: "btn btn-primary" %>
@@ -78,7 +78,11 @@
             </div>
         </div>
         <div class="col-md-7">
-            <%= render 'user_posts',posts: @posts %>
+            <% if @user.released? %>
+                <%= render 'user_posts',posts: @posts %>
+            <% else %>
+                <%= render "public/posts/secretposts" %>
+            <% end %>
         </div>
     </div>
 </div>

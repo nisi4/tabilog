@@ -39,8 +39,8 @@ Rails.application.routes.draw do
   get 'users/:id/show' => "public/users#show",as: "mypage_show"
   get 'users/:id/edit' => "public/users#edit",as: "mypage_edit"
   patch "users/:id" => "public/users#update",as: "mypage_update"
-  patch "users/:id" => "public/users#release",as: "mypage_release"
-  patch "users/:id" => "public/users#nonrelease",as: "mypage_nonrelease"
+  patch "users/release/:id" => "public/users#release",as: "mypage_release"
+  patch "users/nonrelease/:id" => "public/users#nonrelease",as: "mypage_nonrelease"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
