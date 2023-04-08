@@ -56,4 +56,6 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  enum privacy:{nonreleased: 0, released: 1}
+  
 end
