@@ -42,15 +42,12 @@
           zoom: 7,
         });
         //positionに指定した座標にピンを表示させます
+        <% @towns.each do |town| %>
         marker = new google.maps.Marker({
-          position:  {lat:43.06927, lng:141.35098},
+          position:  {lat:<%= town.latitude %>, lng:<%= town.longitude %>},
           map: map
         });
-        
-        marker = new google.maps.Marker({
-          position:  {lat:43.80397, lng:143.89578},
-          map: map
-        });
+        <% end %>
       }
       
       let geocoder
