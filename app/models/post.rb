@@ -14,4 +14,13 @@ class Post < ApplicationRecord
     def favorited_by?(user)
         favorites.exists?(user_id: user.id)
     end
+    
+    def self.sort(selection)
+        case selection
+        when "likes"
+            return find(Favorite.group(:post_id).order(Arel.sql("count(user_id) desc")).pluck(:post_id))
+        when "dislikes"
+            return find(Favorite.group(:post_id).order(Arel.sql("count(user_id) asc")).pluck(:post_id))
+        end
+    end
 end

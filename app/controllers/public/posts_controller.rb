@@ -35,7 +35,19 @@ class Public::PostsController < ApplicationController
     @posts = Post.search(params[:keyword]).where(user_id: released_user_id)
     @posts = Post.search(params[:keyword]).where(user_id: released_user_id).order(created_at: :desc)
     @keyword = params[:keyword]
-    
+    render "index"
+  end
+  
+  def sort
+    # 公開ユーザーを全件取得
+    @users = User.where(privacy: "1")
+    released_user_id = []
+    @users.each do |user|
+      released_user_id << user.id
+    end
+    selection = params[:sort]
+    @posts = Post.search(params[:keyword]).where(user_id: released_user_id).sort(selection)
+    @keyword = params[:keyword]
     render "index"
   end
 

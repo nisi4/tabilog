@@ -44,21 +44,21 @@
                             <col width="30%">
                         </colspan>
                         <tr>
-                          　<td class="align-middle">名前</td>
+                          　<td class="align-middle text-right pr-5">名前：</td>
                          　 <td class="align-middle">(姓)</td>
                           　<td><%= f.text_field :last_name,class: "form-control" %></td>
                           　<td class="align-middle">(名)</td>
                           　<td><%= f.text_field :first_name,class: "form-control" %></td>
                         </tr>
                         <tr>
-                          　<td class="align-middle">フリガナ</td>
+                          　<td class="align-middle text-right pr-5">フリガナ：</td>
                           　<td class="align-middle px-0">(セイ)</td>
                           　<td><%= f.text_field :last_name_kana,class: "form-control" %></td>
                           　<td class="align-middle px-0">(メイ)</td>
                           　<td><%= f.text_field :first_name_kana,class: "form-control" %></td>
                         </tr>
                         <tr>
-                          　<td class="align-middle">メール</td>
+                          　<td class="align-middle text-right pr-5">メール：</td>
                           　<td colspan="4"><%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %></td>
                         </tr>
                     </table>
