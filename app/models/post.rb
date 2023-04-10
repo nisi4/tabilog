@@ -15,12 +15,12 @@ class Post < ApplicationRecord
         favorites.exists?(user_id: user.id)
     end
     
-    def self.sort(selection)
+    def self.post_sort(selection)
         case selection
         when "likes"
-            return find(Favorite.group(:post_id).order(Arel.sql("count(user_id) desc")).pluck(:post_id))
+            return left_outer_joins(:favorites).group('posts.id').select("`posts`.*", "COUNT(`favorites`.id) AS favo_count").order(favo_count: :desc)
         when "dislikes"
-            return find(Favorite.group(:post_id).order(Arel.sql("count(user_id) asc")).pluck(:post_id))
+            return left_outer_joins(:favorites).group('posts.id').select("`posts`.*", "COUNT(`favorites`.id) AS favo_count").order(favo_count: :asc)
         end
     end
 end

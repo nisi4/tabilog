@@ -7,7 +7,7 @@
         <% end %>
     </div>
     <div class="row ml-3 mb-2">
-        <%= form_with url: sort_path,method: :get do |f| %>
+        <%= form_with url: search_keyword_path,method: :get do |f| %>
             <%= f.select :sort, [["いいねが多い順","likes"],
                                  ["いいねが少ない順","dislikes"],
                                  ] %>

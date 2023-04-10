@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     end
     # 公開ユーザーの投稿を全件取得
     @posts = Post.where(user_id: released_user_id)
-    @posts = Post.where(user_id: released_user_id).order(created_at: :desc)
+    @posts = @posts.order(created_at: :desc)
   end
   
   def search_keyword
@@ -32,21 +32,16 @@ class Public::PostsController < ApplicationController
     @users.each do |user|
       released_user_id << user.id
     end
+    # 公開しているユーザーかつ、キーワードが入った投稿を探す
     @posts = Post.search(params[:keyword]).where(user_id: released_user_id)
-    @posts = Post.search(params[:keyword]).where(user_id: released_user_id).order(created_at: :desc)
-    @keyword = params[:keyword]
-    render "index"
-  end
-  
-  def sort
-    # 公開ユーザーを全件取得
-    @users = User.where(privacy: "1")
-    released_user_id = []
-    @users.each do |user|
-      released_user_id << user.id
+    
+    # ここは params[:sort]が存在しているかどうかチェックするのが正しい
+    if params[:sort] == "likes" || params[:sort] == "dislikes"
+      @posts = @posts.post_sort(params[:sort])
+    else
+      @posts = @posts.order(created_at: :desc)
     end
-    selection = params[:sort]
-    @posts = Post.search(params[:keyword]).where(user_id: released_user_id).sort(selection)
+    
     @keyword = params[:keyword]
     render "index"
   end
