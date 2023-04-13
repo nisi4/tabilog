@@ -8,7 +8,7 @@ class Public::HomesController < ApplicationController
     end
     # 公開ユーザーの投稿を全件取得
     @posts = Post.where(user_id: released_user_id)
-    @posts = @posts.order(created_at: :desc)
+    @posts = @posts.order(created_at: :desc).page(params[:page]).per(4)
     
     # 地図上で投稿した市町村にポイントを打つ
     if user_signed_in?

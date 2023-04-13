@@ -1,4 +1,5 @@
 <div class="row">
+    <div class="jscroll">
     <div class="card-deck mx-1">
         <% posts.each do |post| %>
         <div class="col-md-6 col-lg-4 col-xl-3 mb-5 px-0">
@@ -67,4 +68,17 @@
         </div>
         <% end %>
     </div>
+    <%= paginate posts %>
+    </div>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('.jscroll').jscroll({ // 追加したdivのclass名と合わせる
+      contentSelector: '.jscroll', 
+      nextSelector: 'a.next',  // 次ページリンクのセレクタ
+      loadingHtml: '読み込み中',
+      padding: 10
+    });
+  });
+</script>
