@@ -47,7 +47,7 @@
                             <span id="rate_<%= post.id %>"></span>
                             <script>
                             $(document).on('turbolinks:load', function() {
-                                let raty_<%= post.id %> = document.querySelector('#rate_<%= post.id %>');
+                                let rate_<%= post.id %> = document.querySelector('#rate_<%= post.id %>');
                                 rate_<%= post.id %>.innerHTML = ""
                                 let option_<%= post.id %> = {
                                     starOn: "<%= asset_path('star-on.png') %>",
@@ -55,7 +55,7 @@
                                     score: "<%= post.star %>",
                                     readOnly: true,
                                   };
-                                raty(raty_<%= post.id %> ,option_<%= post.id %>);
+                                raty(rate_<%= post.id %> ,option_<%= post.id %>);
                             });
                             </script>
                             <!---------------------->

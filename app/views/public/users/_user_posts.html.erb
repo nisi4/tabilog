@@ -1,4 +1,5 @@
 <div class="row">
+    <div class="jscroll">
     <div class="card-deck mx-1">
         <% posts.each do |post| %>
         <div class="col-md-12 col-lg-6 mb-5 px-0">
@@ -67,7 +68,7 @@
                 <div class="row">
                     <div class="col">
                         <%= link_to "編集",edit_public_post_path(post.id),class: "btn btn-success" %>    
-                        <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger" %>    
+                        <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %>    
                     </div>
                 </div>
                 <% end %>
@@ -75,4 +76,23 @@
         </div>
         <% end %>
     </div>
+    <%= paginate posts %>
+    </div>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('.jscroll').jscroll({ // 追加したdivのclass名と合わせる
+      contentSelector: '.jscroll', 
+      nextSelector: 'span.next > a',  // 次ページリンクのセレクタ
+      loadingHtml: '読み込み中',
+      padding: 10
+    });
+  });
+</script>
+
+<style>
+  .pagination {
+    visibility: hidden;
+  }
+</style>
