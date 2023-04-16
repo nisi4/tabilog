@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row mt-5 mb-4 d-flex justify-content-center">
-    <h2>ー　<%= @user.user_name %>さんの新たなTabiログ　ー</h2>
+    <div class="h3">ー　<%= @user.user_name %>さんの新たなTabiログ　ー</div>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="col-sm-7 mr-4">
+    <div class="col-sm-10 col-md-8 col-lg-6 mr-sm-5">
       <%= form_with model: @post,url: public_posts_path,method: :post do |f| %>
       <table class="table table-borderless">
         <colspan>
