@@ -43,14 +43,14 @@
         });
         //訪問市町村の座標にピンを表示させる
         <% @towns.each do |town| %>
+        results = Geocoder.search(town.town_name)
         marker = new google.maps.Marker({
-          position:  {lat:<%= town.latitude %>, lng:<%= town.longitude %>},
+          position:  results[0].geometry.location,
           map: map
         });
         <% end %>
       }
       
-      let geocoder
       
       //検索フォームのボタンが押された時に実行
       function codeAddress(){
