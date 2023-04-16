@@ -42,13 +42,17 @@
           zoom: 7,
         });
         //訪問市町村の座標にピンを表示させる
+        <% if @towns.present? %>
         <% @towns.each do |town| %>
-        results = Geocoder.search(town.town_name)
-        marker = new google.maps.Marker({
-          position:  results[0].geometry.location,
-          map: map
-        });
+          var contentString = "<%= town.town_name %>";
+          
+          var marker = new google.maps.Marker({
+            position: {lat: <%= town.latitude %>, lng: <%= town.longitude %>},
+            map: map
+          });
         <% end %>
+        <% end %>
+
       }
       
       
