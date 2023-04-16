@@ -12,12 +12,10 @@ Admin.create!(
 
 require "csv"
 
-CSV.foreach("db/town_data(citypoint).csv") do |info|
+CSV.foreach("db/towndata.csv") do |info|
     Town.create!(
         id: info[0],
-        town_name: info[1],
-        latitude: info[2],
-        longitude: info[3]
+        town_name: info[1]
     )
 end
     
