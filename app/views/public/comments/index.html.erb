@@ -10,12 +10,21 @@
                 <col width="40%">
                 <col width="45%">
                 <tr>
-                    <td class="align-middle"><%= image_tag post_comment.user.get_profile_image(30,30),class: "rounded-circle" %></td>
-                    <td class="align-middle"><%= post_comment.user.user_name %></td>
+                    <td class="align-middle text-center"><%= image_tag post_comment.user.get_profile_image(40,40),class: "rounded-circle" %></td>
+                    <td class="align-middle">
+                        <%= link_to mypage_path(post_comment.user_id) do %>
+                            @<%= post_comment.user.user_name %></td>
+                        <% end %>
                     <td class="align-middle"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td class="text-center">
+                        <% if post_comment.user == current_user %>
+                            <%= link_to public_post_comment_path(post_comment.post,post_comment),method: :delete,class: "text-danger","data-confirm" => "本当に削除しますか？" do %>
+                                <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                        <% end %>
+                    </td>
                     <td colspan="2"><%= post_comment.comment %></td>
                 </tr>
             </table>
