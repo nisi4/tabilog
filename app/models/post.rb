@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+    attr_accessor :town_name
     
     has_one_attached :image
     belongs_to :user

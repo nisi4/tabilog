@@ -8,6 +8,9 @@ class Public::PostsController < ApplicationController
   
   def create
     post = Post.new(post_params)
+    if town = Town.find_by!(town_name: post.town_name)
+      post.town_id = town.id
+    end
     post.user_id = current_user.id
     post.save
     redirect_to mypage_path(post.user_id)
@@ -66,7 +69,7 @@ class Public::PostsController < ApplicationController
 
 private
   def post_params
-    params.require(:post).permit(:image,:town_id,:category_id,:title,:star,:body)
+    params.require(:post).permit(:image,:town_id,:category_id,:title,:star,:body,:town_name)
   end
 
 end

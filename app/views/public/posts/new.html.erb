@@ -17,7 +17,14 @@
         <!--seedファイルの市町村データから選択させる-->
         <tr>
           <td class="align-middle text-right">市町村名</td>
-          <td><%= f.collection_select(:town_id,@towns,:id,:town_name,{prompt: "--市町村を選択してください--"},class: "form-control") %></td>
+          <td>
+            <%= f.text_field :town_name, list: "list-name",class: "form-control" %>
+            <datalist id="list-name">
+              <% @towns.each do |town| %>
+                <option value=<%= town.town_name %>>
+              <% end %>
+            </datalist>
+          </td>
         </tr>
         <!--seedファイルのカテゴリデータから選択させる-->
         <tr>
