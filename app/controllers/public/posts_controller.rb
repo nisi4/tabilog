@@ -25,7 +25,7 @@ class Public::PostsController < ApplicationController
     end
     # 公開ユーザーの投稿を全件取得
     @posts = Post.where(user_id: released_user_id)
-    @posts = @posts.order(created_at: :desc)
+    @posts = @posts.order(created_at: :desc).page(params[:page]).per(8)
   end
   
   def search_keyword
@@ -40,9 +40,9 @@ class Public::PostsController < ApplicationController
     
     # ここは params[:sort]が存在しているかどうかチェックするのが正しい
     if params[:sort] == "likes" || params[:sort] == "dislikes"
-      @posts = @posts.post_sort(params[:sort])
+      @posts = @posts.post_sort(params[:sort]).page(params[:page]).per(8)
     else
-      @posts = @posts.order(created_at: :desc)
+      @posts = @posts.order(created_at: :desc).page(params[:page]).per(8)
     end
     
     @keyword = params[:keyword]
