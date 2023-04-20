@@ -1,4 +1,16 @@
 <div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-5">
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>  
+    </div>
+  </div>
   <div class="row mt-5 mb-4 d-flex justify-content-center">
     <div class="h3">ー　<%= @user.user_name %>さんの新たなTabiログ　ー</div>
   </div>

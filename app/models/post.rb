@@ -8,6 +8,12 @@ class Post < ApplicationRecord
     has_many :favorites,dependent: :destroy
     has_many :comments,dependent: :destroy
     
+    validates :image,presence: true
+    validates :town_id,presence: true
+    validates :category_id,presence: true
+    validates :title,presence: true
+    validates :star,presence: true
+    
     def self.search(keyword)
         joins(:town,:user).where(["title like? OR body like? OR town_name like? OR user_name like?","%#{keyword}%","%#{keyword}%","%#{keyword}%","%#{keyword}%"])
     end

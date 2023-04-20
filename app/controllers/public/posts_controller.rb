@@ -7,13 +7,21 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    post = Post.new(post_params)
-    if town = Town.find_by!(town_name: post.town_name)
-      post.town_id = town.id
+    @post = Post.new(post_params)
+    if town = Town.find_by(town_name: @post.town_name)
+      @post.town_id = town.id
+    else
+      @post.town_id = nil
     end
-    post.user_id = current_user.id
-    post.save
-    redirect_to mypage_path(post.user_id)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to mypage_path(@post.user_id)
+    else
+      @user = current_user
+      @towns = Town.all
+      @categories = Category.all
+      render :new
+    end
   end
 
   def index
