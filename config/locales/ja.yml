@@ -1,0 +1,6 @@
+ja:
+ enum:
+  user:
+   status:
+    false: "有効"
+    true: "停止"

@@ -62,4 +62,6 @@ class User < ApplicationRecord
   
   enum privacy:{nonreleased: 0, released: 1}
   
+  enum status:{"有効": false, "停止": true} 
+  
 end

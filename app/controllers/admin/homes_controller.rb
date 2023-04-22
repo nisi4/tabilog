@@ -3,6 +3,6 @@ class Admin::HomesController < ApplicationController
   
   def top
     @posts = Post.all
-    @posts = Post.all.order(created_at: :desc)
+    @posts = @posts.order(created_at: :desc).page(params[:page]).per(8)
   end
 end
