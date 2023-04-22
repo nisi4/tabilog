@@ -56,6 +56,12 @@ class Public::PostsController < ApplicationController
     @keyword = params[:keyword]
     render "index"
   end
+  
+  def check_traveller
+    @users = User.check(params[:traveller])
+    @traveller = params[:traveller]
+    
+  end
 
   def edit
     @post = Post.find(params[:id])

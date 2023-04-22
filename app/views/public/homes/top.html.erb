@@ -4,12 +4,22 @@
       <div class="col align-middle text-center">
         <h1 class="display-1 mb-3">Tabiログ</h1>
         <h3 class="mb-5">ー 北海道を遊び尽くす ー</h3>
-        <div class="row mb-5">
+        <div class="row mb-3">
           <div class="col">
             <div class="search_form">
               <%= form_with url:search_keyword_path,local: true,method: :get do |f| %>
                 <%= f.search_field :keyword,value: @keyword,placeholder: "キーワードから探す" %>
                 <%= f.submit "検索",class: "btn-sm btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col">
+            <div class="search_form">
+              <%= form_with url:check_traveller_path,local: true,method: :get do |f| %>
+                <%= f.search_field :traveller,value: @traveller,placeholder: "ユーザーを探す" %>
+                <%= f.submit "検索",class: "btn-sm btn-success" %>
               <% end %>
             </div>
           </div>
