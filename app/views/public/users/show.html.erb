@@ -5,7 +5,7 @@
                 <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
             </div>
             <div class="row mb-5">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="row d-flex justify-content-center">
                         <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
@@ -23,29 +23,29 @@
                         <% end %>
                     </div>
                 </div>
-                <div class="col-6 pl-0 pr-5">
+                <div class="col-7 pl-0 pr-4">
                     <table class="table table-borderless mb-0">
                         <colspan>
-                            <col width="65%">
-                            <col width="30%">
+                            <col width="45%">
+                            <col width="50%">
                             <col width="5%">
                         </colspan>
                         <tr class="border-bottom">
-                            <td>ユーザー：</td>
-                            <td colspan="2"><%= @user.user_name %></td>
+                            <td width="40%">ユーザー：</td>
+                            <td width="60%" colspan="2"><%= @user.user_name %></td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>投稿数：</td>
+                            <td width="40%">投稿数：</td>
                             <td align="center"><%= @posts.count %></td>
                             <td>件</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>訪問数：</td>
+                            <td width="40%">訪問数：</td>
                             <td align="center"><%= @visit_town %></td>
                             <td>/179</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>フォロー：</td>
+                            <td width="40%">フォロー：</td>
                             <td></td>
                             <td>人</td>
                         </tr>

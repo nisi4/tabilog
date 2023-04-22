@@ -17,11 +17,11 @@
                 <div class="col-7">
                     <table class="table table-borderless mb-0">
                         <colspan>
-                            <col width="35%">
-                            <col width="65%">
+                            <col width="40%">
+                            <col width="60%">
                         </colspan>
                         <tr>
-                            <td class="align-middle">ユーザー名：</td>
+                            <td class="align-middle">ユーザー：</td>
                             <td><%= f.text_field :user_name,class: "form-control" %></td>
                         </tr>
                         <tr>
@@ -44,21 +44,21 @@
                             <col width="30%">
                         </colspan>
                         <tr>
-                          　<td class="align-middle text-right pr-5">名前：</td>
+                          　<td class="align-middle text-right pr-3">名前：</td>
                          　 <td class="align-middle">(姓)</td>
                           　<td><%= f.text_field :last_name,class: "form-control" %></td>
                           　<td class="align-middle">(名)</td>
                           　<td><%= f.text_field :first_name,class: "form-control" %></td>
                         </tr>
                         <tr>
-                          　<td class="align-middle text-right pr-5">フリガナ：</td>
+                          　<td class="align-middle text-right pr-3">フリガナ：</td>
                           　<td class="align-middle px-0">(セイ)</td>
                           　<td><%= f.text_field :last_name_kana,class: "form-control" %></td>
                           　<td class="align-middle px-0">(メイ)</td>
                           　<td><%= f.text_field :first_name_kana,class: "form-control" %></td>
                         </tr>
                         <tr>
-                          　<td class="align-middle text-right pr-5">メール：</td>
+                          　<td class="align-middle text-right pr-3">メール：</td>
                           　<td colspan="4"><%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %></td>
                         </tr>
                     </table>
