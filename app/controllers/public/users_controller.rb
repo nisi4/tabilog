@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :is_matching_login_user,except: [:index]
+  before_action :is_matching_login_user
   
   def index
     @user = User.find(params[:id])
@@ -37,6 +37,12 @@ class Public::UsersController < ApplicationController
     redirect_to mypage_show_path(@user.id)
   end
   
+  def leave
+    user = User.find(params[:id])
+    user.update(status: true)
+    redirect_to destroy_user_session_path
+  end
+  
   private
   def is_matching_login_user
     user = User.find(params[:id])
@@ -48,5 +54,5 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:user_name,:profile_image,:introduction,:email)
   end
-  
+
 end

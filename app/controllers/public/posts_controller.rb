@@ -8,8 +8,8 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    if town = Town.find_by(town_name: @post.town_name)
-      @post.town_id = town.id
+    if town_exist = Town.find_by(town_name: @post.town_name)
+      @post.town_id = town_exist.id
     else
       @post.town_id = nil
     end
@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
 
   def index
     # 公開ユーザーを全件取得
-    @users = User.where(privacy: "1")
+    @users = User.where(privacy: "1",status: false)
     released_user_id = []
     @users.each do |user|
       released_user_id << user.id
@@ -38,7 +38,7 @@ class Public::PostsController < ApplicationController
   
   def search_keyword
     # 公開ユーザーを全件取得
-    @users = User.where(privacy: "1")
+    @users = User.where(privacy: "1",status: false)
     released_user_id = []
     @users.each do |user|
       released_user_id << user.id
@@ -58,7 +58,7 @@ class Public::PostsController < ApplicationController
   end
   
   def check_traveller
-    @users = User.check(params[:traveller])
+    @users = User.check(params[:traveller]).where(status: false)
     @traveller = params[:traveller]
     
   end

@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   
   def index
     @user = User.new
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
   end
   
   def update

@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     # 公開ユーザーを全件取得
-    @users = User.where(privacy: "1")
+    @users = User.where(privacy: "1",status: false)
     released_user_id = []
     @users.each do |user|
       released_user_id << user.id
