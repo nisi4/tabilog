@@ -40,7 +40,7 @@ class Public::UsersController < ApplicationController
   def leave
     user = User.find(params[:id])
     user.update(status: true)
-    redirect_to destroy_user_session_path
+    redirect_to mypage_path(user.id)
   end
   
   private
