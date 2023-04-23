@@ -13,7 +13,7 @@
                         <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-info" %>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-warning" %>
+                        <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-warning","data-turbolinks": "false" %>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
                         <% if @user.released? %>

@@ -66,7 +66,7 @@
                 <% if current_page?(mypage_show_path) %>
                 <div class="row">
                     <div class="col">
-                        <%= link_to "編集",edit_public_post_path(post.id),class: "btn btn-success" %>    
+                        <%= link_to "編集",edit_public_post_path(post.id),class: "btn btn-success","data-turbolinks": "false" %>    
                         <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger" %>    
                     </div>
                 </div>
@@ -77,5 +77,5 @@
     </div>
 </div>
 <div class="row mb-5 mr-1 d-flex justify-content-end">
-    <%= paginate posts %>
+    <%= paginate posts,"data-turbolinks": "false" %>
 </div>
