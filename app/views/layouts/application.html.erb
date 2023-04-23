@@ -29,10 +29,10 @@
               <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
                 <i class="fas fa-home mx-2" style="font-size:2rem;"></i>
               <% end %>
-              <%= link_to mypage_show_path(current_user.id),class: "text-dark",style: "text-decoration:none;" do %>
+              <%= link_to mypage_show_path(current_user.id),class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
                 <i class="fas fa-user mx-2" style="font-size:2rem;"></i>
               <% end %>
-              <%= link_to new_public_post_path,class: "text-dark",style: "text-decoration:none;" do %>
+              <%= link_to new_public_post_path,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
                 <i class="fas fa-edit mx-2" style="font-size:2rem;"></i>
               <% end %>
             <!--管理者でログイン中-->
