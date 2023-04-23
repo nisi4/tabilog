@@ -4,15 +4,15 @@ class Public::UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
     @posts = @user.posts.all
-    @posts = @user.posts.all.order(created_at: :desc).page(params[:page]).per(4)
+    @posts = @posts.order(created_at: :desc).page(params[:page]).per(4)
     @visit_town = @posts.distinct.count(:town_id)
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all
-    @posts = @user.posts.all.order(created_at: :desc).page(params[:page]).per(4)
-    @visit_town = @posts.distinct.count(:town_id)
+    @posts = @posts.order(created_at: :desc).page(params[:page]).per(4)
+    @visit_town = @posts.distinct.total_count(:town_id)
   end
 
   def edit

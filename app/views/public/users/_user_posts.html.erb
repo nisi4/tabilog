@@ -43,20 +43,7 @@
                         <div class="col-6 text-right pl-0">
                             <span class="h6 align-bottom d-sm-none">おすすめ度：</span>
                             <!--星型レビューを表示-->
-                            <span id="rate_<%= post.id %>"></span>
-                            <script>
-                            $(document).on('turbolinks:load', function() {
-                                let raty_<%= post.id %> = document.querySelector('#rate_<%= post.id %>');
-                                rate_<%= post.id %>.innerHTML = ""
-                                let option_<%= post.id %> = {
-                                    starOn: "<%= asset_path('star-on.png') %>",
-                                    starOff: "<%= asset_path('star-off.png') %>",
-                                    score: "<%= post.star %>",
-                                    readOnly: true,
-                                  };
-                                raty(raty_<%= post.id %> ,option_<%= post.id %>);
-                            });
-                            </script>
+                            <span id="rate_<%= post.id %>" data-score="<%=post.star%>" class="raty-star"></span>
                             <!---------------------->
                         </div>
                     </div>
@@ -77,5 +64,25 @@
     </div>
 </div>
 <div class="row mb-5 mr-1 d-flex justify-content-end">
-    <%= paginate posts,"data-turbolinks": "false" %>
+    <%= paginate posts %>
 </div>
+
+<script>
+    $(document).on('turbolinks:load', function reloadRaty(){
+        let elements = document.getElementsByClassName('raty-star');
+        let option = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            score: function() {
+                return $(this).attr('data-score');
+            },
+            readOnly: true,
+        };
+
+        for (let i = 0;i < elements.length;i++) {
+            console.log(elements[i]);
+            elements[i].innerHTML = "";
+            raty(elements[i] ,option);
+        }
+  });
+</script>
