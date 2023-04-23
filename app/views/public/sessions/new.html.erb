@@ -20,7 +20,7 @@
         </tr>
       </table>
       <div class="row mb-4 d-flex justify-content-center">
-        <%= f.submit "ログイン",class: "btn btn-success text-white" %>
+        <%= f.submit "ログイン",class: "btn btn-success text-white","data-turbolinks": "false" %>
       </div>
       <% end %>
     </div>
@@ -29,6 +29,6 @@
     ※アカウント登録がお済みでない方は、<%= link_to "こちら",new_user_registration_path %>
   </div>
   <div class="row mt-4 d-flex justify-content-center">
-    ※ゲストでログインする方は、<%= link_to "こちら", users_guest_sign_in_path, method: :post %>
+    ※ゲストでログインする方は、<%= link_to "こちら", users_guest_sign_in_path, method: :post, "data-turbolinks": "false" %>
   </div>
 </div>
