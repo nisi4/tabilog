@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row mt-5 d-flex justify-content-center">
-        <h2 class="h3 md-h2">ー　<%= @user.user_name %>さんのプロフィール編集　ー</h2>
+        <h2 class="h3 md-h2">ー　プロフィール編集　ー</h2>
     </div>
     <div class="row mt-4 d-flex justify-content-center">
         <div class="col-11 col-md-10 col-lg-8">
@@ -16,13 +16,9 @@
                 </div>
                 <div class="col-7">
                     <table class="table table-borderless mb-0">
-                        <colspan>
-                            <col width="40%">
-                            <col width="60%">
-                        </colspan>
                         <tr>
-                            <td class="align-middle">ユーザー：</td>
-                            <td><%= f.text_field :user_name,class: "form-control" %></td>
+                            <td width="35%" class="align-middle">Tabi人：</td>
+                            <td width="65%"><%= f.text_field :user_name,class: "form-control" %></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="pb-0 align-bottom">自己紹介：</td>

@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :is_matching_login_user
+  before_action :is_matching_login_user,except: [:index]
   
   def index
     @user = User.find(params[:id])

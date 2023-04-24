@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="row my-4 d-flex justify-content-center">
-                <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
+                <h3>ー　わたしのTabiログ　ー</h3>
             </div>
             <div class="row mb-5">
                 <div class="col-5">
@@ -28,39 +28,32 @@
                 </div>
                 <div class="col-7 pl-0 pr-4">
                     <table class="table table-borderless mb-0">
-                        <colspan>
-                            <col width="45%">
-                            <col width="50%">
-                            <col width="5%">
-                        </colspan>
                         <tr class="border-bottom">
-                            <td width="40%">ユーザー：</td>
-                            <td width="60%" colspan="2"><%= @user.user_name %></td>
+                            <td>Tabi人：</td>
+                            <td colspan="2"><%= @user.user_name %></td>
                         </tr>
                         <tr class="border-bottom">
                             <td width="40%">投稿数：</td>
-                            <td align="center"><%= @posts.total_count %></td>
-                            <td>件</td>
+                            <td width="55%" align="center"><%= @posts.total_count %></td>
+                            <td width="5%">件</td>
                         </tr>
                         <tr class="border-bottom">
                             <td width="40%">訪問数：</td>
-                            <td align="center"><%= @visit_town %></td>
-                            <td>/179</td>
+                            <td width="55%" align="center"><%= @visit_town %></td>
+                            <td width="5%">/179</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td width="40%">フォロー：</td>
-                            <td></td>
-                            <td>人</td>
+                            <td width="45%">フォロー：</td>
+                            <td width="50%"></td>
+                            <td width="5%">人</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>フォロワー：</td>
-                            <td align="center"></td>
-                            <td>人</td>
+                            <td width="50%">フォロワー：</td>
+                            <td width="45%" align="center"></td>
+                            <td width="5%">人</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>自己紹介：</td>
-                            <td align="center"></td>
-                            <td></td>
+                            <td colspan="3">自己紹介：</td>
                         </tr>
                         <tr class="border">
                             <td height="120" colspan="3"><%= @user.introduction %></td>

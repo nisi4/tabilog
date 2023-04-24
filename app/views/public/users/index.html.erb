@@ -12,8 +12,10 @@
                     <div class="row mt-4 d-flex justify-content-center">
                         <% if user_signed_in? && current_user.following?(@user) %>
                             <%= link_to "フォローを外す", unfollow_path(@user.id),method: :delete,class: "btn btn-primary" %>
-                        <% else %>
+                        <% elsif current_user.id != @user.id  %>
                             <%= link_to "フォローする", follow_path(@user.id),method: :post,class: "btn btn-primary" %>
+                        <% else %>
+                            <%= link_to "フォローする", mypage_path(@user.id),class: "btn btn-primary" %>
                         <% end %>
                         <table class="table table-borderless my-3 mx-4">
                             <colspan>
@@ -52,8 +54,8 @@
                             <col width="5%">
                         </colspan>
                         <tr class="border-bottom">
-                            <td width="30%">ユーザー：</td>
-                            <td width="70%" colspan="2"><%= @user.user_name %></td>
+                            <td>Tabi人：</td>
+                            <td colspan="2"><%= @user.user_name %></td>
                         </tr>
                         <tr class="border-bottom">
                             <td>投稿数：</td>
