@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :sign_out_user, if: :user_signed_in?
   before_action :is_matching_login_user,except: [:index]
   
   def index
@@ -53,6 +54,10 @@ class Public::UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:user_name,:profile_image,:introduction,:email)
+  end
+  
+  def sign_out_user
+    sign_out_and_redirect(current_user) if current_user.status == true
   end
 
 end
