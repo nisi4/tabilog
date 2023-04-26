@@ -14,13 +14,14 @@
   <body>
     <header>
       <div class="container-fluid">
-        <div class="row my-4 d-flex justify-content-between">
-          <div class="col-sm-4 ml-5">
+        <div class="row my-2 d-flex justify-content-between">
+          <div class="col-4 ml-5">
             <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
-              <span class="h2 border rounded p-2">Tabiログ</span>
+              <%= image_tag "TABI4.png",class: "tabilogo",alt: "Tabiログ",width: "120px" %>
             <% end %>
           </div>
-          <div class="col-sm-5 text-right mr-4">
+          <div class="col-6 d-flex justify-content-end align-items-center mr-4 mr-sm-5">
+            <div>
             <!--ユーザーでログイン中-->
             <% if user_signed_in? %>
               <%= link_to destroy_user_session_path,method: :delete,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
@@ -61,6 +62,7 @@
                 <i class="fas fa-edit mx-2" style="font-size:2rem;"></i>
               <% end %>
             <% end %>
+            </div>
           </div>
         </div>
       </div>
