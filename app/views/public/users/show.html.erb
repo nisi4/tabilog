@@ -10,20 +10,20 @@
                         <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-info" %>
+                        <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-outline-info" %>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-warning","data-turbolinks": "false" %>
+                        <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-outline-warning","data-turbolinks": "false" %>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
                         <% if @user.released? %>
-                            <%= link_to "非公開にする",mypage_nonrelease_path(@user.id),method: :patch,class: "btn btn-success" %>
+                            <%= link_to "非公開にする",mypage_nonrelease_path(@user.id),method: :patch,class: "btn btn-outline-success" %>
                         <% else %>
                             <%= link_to "公開にする",mypage_release_path(@user.id),method: :patch,class: "btn btn-success" %>
                         <% end %>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center">
-                        <%= link_to "退会する",mypage_leave_path(@user.id),method: :patch,class: "btn btn-danger","data-confirm" => "本当に退会しますか？" %>
+                        <%= link_to "退会する",mypage_leave_path(@user.id),method: :patch,class: "btn btn-outline-danger","data-confirm" => "本当に退会しますか？" %>
                     </div>
                 </div>
                 <div class="col-7 pl-0 pr-4">
