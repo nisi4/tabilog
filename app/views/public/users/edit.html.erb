@@ -8,7 +8,7 @@
             <div class="row mb-2 d-flex justify-content-center">
                 <div class="col-5 col-md-3">
                     <div class="row mt-2 d-flex justify-content-center">
-                        <%= image_tag @user.get_profile_image(100,100) %><br>
+                        <%= image_tag @user.get_profile_image(100,100),class: "rounded-circle" %><br>
                     </div>
                     <div class="row mt-4 d-flex justify-content-center ml-4">
                         <%= f.file_field :profile_image,accept: "/image*" %>    
