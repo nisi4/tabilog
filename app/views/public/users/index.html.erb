@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <% if @user.released? %>
+            <% if @user.released? || @user.following?(current_user) %>
                 <%= render 'user_posts',posts: @posts %>
             <% else %>
                 <%= render "public/posts/secretposts" %>
