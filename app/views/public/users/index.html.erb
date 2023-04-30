@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-lg-6 col-xl-5">
             <div class="row my-4 d-flex justify-content-center">
                 <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
             </div>
             <div class="row mb-5">
-                <div class="col-6">
+                <div class="col-6 col-md-5 col-lg-6 pl-md-3">
                     <div class="row d-flex justify-content-center">
                         <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
                     </div>
@@ -46,7 +46,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-6 pl-0 pr-4">
+                <div class="col-6 col-md-5 col-lg-6 pl-0 pr-4">
                     <table class="table table-borderless mb-0">
                         <colspan>
                             <col width="50%">
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-lg-6 col-xl-7">
             <% if @user.released? || @user.following?(current_user) %>
                 <%= render 'user_posts',posts: @posts %>
             <% else %>
