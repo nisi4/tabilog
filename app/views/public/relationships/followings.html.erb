@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row mt-5 mb-4 d-flex justify-content-center">
-        <span class="h2">ー　フォロー　ー</span>
+        <span class="h2">ー　フォローリスト　ー</span>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-10">
@@ -9,10 +9,14 @@
                 <tr>
                     <td class="align-middle text-center">
                         <%= link_to mypage_path(user.id),class: "text-dark",style: "text-decoration:none;" do %>
-                        <%= image_tag user.get_profile_image(50,50),class: "rounded-circle" %>　<%= user.user_name %>
+                            <%= image_tag user.get_profile_image(50,50),class: "rounded-circle" %>　<%= user.user_name %>
                         <% end %>
                     </td>
-                    <td class="align-middle text-center"><%= link_to "フォローを外す", unfollow_path(user.id),method: :delete,class: "btn btn-primary" %></td>
+                    <% if current_user.id == @user.id %>
+                        <td class="align-middle text-center">
+                            <%= link_to "フォローを外す", unfollow_path(user.id),method: :delete,class: "btn btn-primary" %>
+                        </td>
+                    <% end %>
                 </tr>
                 <% end %>
             </table>
