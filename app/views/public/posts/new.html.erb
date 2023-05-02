@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-5">
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>  
+    </div>
+  </div>
+  <div class="row mt-5 mb-4 d-flex justify-content-center">
+    <div class="h3">ー　新たなTabiログ　ー</div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-10 col-md-8 col-lg-6 mr-sm-5">
+      <%= form_with model: @post,url: public_posts_path,method: :post do |f| %>
+      <table class="table table-borderless">
+        <colspan>
+          <col width="30%">
+          <col width="70%">
+        </colspan>
+        <tr>
+          <td class="align-middle text-right">Tabi画像</td>
+          <td><%= f.file_field :image,accept: "image/*" %></td>
+        </tr>
+        <!--seedファイルの市町村データから選択させる-->
+        <tr>
+          <td class="align-middle text-right">市町村名</td>
+          <td>
+            <%= f.text_field :town_name, list: "list-name",class: "form-control" %>
+            <datalist id="list-name">
+              <% @towns.each do |town| %>
+                <option value=<%= town.town_name %>>
+              <% end %>
+            </datalist>
+          </td>
+        </tr>
+        <!--seedファイルのカテゴリデータから選択させる-->
+        <tr>
+          <td class="align-middle text-right">カテゴリ</td>
+          <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">タイトル</td>
+          <td><%= f.text_field :title,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">おすすめ度</td>
+          <!--おすすめ度javascript-->
+          <td>
+            <div id="post_raty"></div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+              let raty_elem = document.querySelector('#post_raty');
+              raty_elem.innerHTML = ""
+              let option = {  
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'post[star]',
+                };
+              raty(raty_elem,option);
+              });
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">思い出</td>
+          <td><%= f.text_area :body,class: "form-control" %></td>
+        </tr>
+      </table>
+      <div class="row mb-4 d-flex justify-content-center">
+        <%= f.submit "記録",class: "btn btn-success text-white" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

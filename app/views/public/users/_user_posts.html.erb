@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="card-deck mx-1">
+        <% posts.each do |post| %>
+        <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-5 px-0">
+            <div class="card h-100 shadow">
+                <%= image_tag post.image,class: "img-fluid" %>
+                <div class="card-body px-3 pb-3 pt-0">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4 col-sm-4 col-md-6">
+                                    <% if user_signed_in? && post.favorited_by?(current_user) %>
+                                        <p class="mb-0">
+                                            <%= link_to unfavorite_path(post.id),method: :delete,class: "text-dark",style: "text-decoration:none;" do %>
+                                                <span class="text-danger">♥</span><%= post.favorites.count %>件
+                                            <% end %>
+                                        </p>
+                                    <% else %>
+                                        <p class="mb-0">
+                                            <%= link_to favorite_path(post.id),method: :post,class: "text-dark",style: "text-decoration:none;" do %>
+                                                ♡<%= post.favorites.count %>件
+                                            <% end %>
+                                        </p>
+                                    <% end %>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-6">
+                                    <%= link_to public_post_comments_path(post.id),class: "text-dark",style: "text-decoration:none;" do %>
+                                        <i class="far fa-comment-dots"></i><%= post.comments.count %>件
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 text-right">
+                            <%= link_to mypage_path(post.user.id) do %>
+                                ＠<%= post.user.user_name %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6 pr-0">
+                            <span class="card-title h4 font-weight-bold"><%= post.title %></span>    
+                        </div>
+                        <div class="col-6 text-right pl-0">
+                            <span class="h6 align-bottom d-sm-none">おすすめ度：</span>
+                            <!--星型レビューを表示-->
+                            <span id="rate_<%= post.id %>" data-score="<%=post.star%>" class="raty-star"></span>
+                            <!---------------------->
+                        </div>
+                    </div>
+                    <p class="card-text"><%= post.body %></p>
+                    <small class="text-muted">市町村：<%= post.town.town_name %>　カテゴリ：<%= post.category.category_name %></small>
+                </div>
+                <% if current_page?(mypage_show_path) %>
+                <div class="row">
+                    <div class="col">
+                        <%= link_to "編集",edit_public_post_path(post.id),class: "btn btn-success","data-turbolinks": "false" %>    
+                        <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger" %>    
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+<div class="row mb-5 mr-1 d-flex justify-content-end">
+    <%= paginate posts %>
+</div>
+
+<script>
+    $(document).on('turbolinks:load', function reloadRaty(){
+        let elements = document.getElementsByClassName('raty-star');
+        let option = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            score: function() {
+                return $(this).attr('data-score');
+            },
+            readOnly: true,
+        };
+
+        for (let i = 0;i < elements.length;i++) {
+            console.log(elements[i]);
+            elements[i].innerHTML = "";
+            raty(elements[i] ,option);
+        }
+  });
+</script>

@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="row mt-5 d-flex justify-content-center">
+        <h2 class="h3 md-h2">ー　プロフィール編集　ー</h2>
+    </div>
+    <div class="row mt-4 d-flex justify-content-center">
+        <div class="col-11 col-md-10 col-lg-8">
+            <%= form_with model: @user,url: mypage_update_path(@user.id),method: :patch do |f| %>
+            <div class="row mb-2 d-flex justify-content-center">
+                <div class="col-5 col-md-3">
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <%= image_tag @user.get_profile_image(100,100),class: "rounded-circle" %><br>
+                    </div>
+                    <div class="row mt-4 d-flex justify-content-center ml-4">
+                        <%= f.file_field :profile_image,accept: "/image*" %>    
+                    </div>
+                </div>
+                <div class="col-7">
+                    <table class="table table-borderless mb-0">
+                        <tr>
+                            <td width="35%" class="align-middle">Tabi人：</td>
+                            <td width="65%"><%= f.text_field :user_name,class: "form-control" %></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pb-0 align-bottom">自己紹介：</td>
+                        </tr>
+                        <tr>
+                            <td height="auto" width="auto" colspan="2"><%= f.text_area :introduction,class: "form-control" %></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-borderless">
+                        <colspan>
+                            <col width="30%">
+                            <col width="5%">
+                            <col width="30%">
+                            <col width="5%">
+                            <col width="30%">
+                        </colspan>
+                        <tr>
+                          　<td class="align-middle text-right pr-3">名前：</td>
+                         　 <td class="align-middle">(姓)</td>
+                          　<td><%= f.text_field :last_name,class: "form-control" %></td>
+                          　<td class="align-middle">(名)</td>
+                          　<td><%= f.text_field :first_name,class: "form-control" %></td>
+                        </tr>
+                        <tr>
+                          　<td class="align-middle text-right pr-3">フリガナ：</td>
+                          　<td class="align-middle px-0">(セイ)</td>
+                          　<td><%= f.text_field :last_name_kana,class: "form-control" %></td>
+                          　<td class="align-middle px-0">(メイ)</td>
+                          　<td><%= f.text_field :first_name_kana,class: "form-control" %></td>
+                        </tr>
+                        <tr>
+                          　<td class="align-middle text-right pr-3">メール：</td>
+                          　<td colspan="4"><%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %></td>
+                        </tr>
+                    </table>
+                    <div class="row mt-5 d-flex justify-content-center">
+                        <%= f.submit "変更を保存",class: "btn btn-success text-white" %>
+                    </div>
+                </div>
+            </div>
+            <% end %> 
+        </div>
+ 　 </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center mt-5 mb-3">
+        <% if @keyword.present? %>
+            <h2>ー "<%= @keyword %>" で検索 ー</h2>
+        <% else %>
+            <h2>ー Tabi一覧 ー</h2>
+        <% end %>
+    </div>
+    <div class="row ml-3 mb-2">
+        <%= form_with url: search_keyword_path,method: :get do |f| %>
+            <%= f.select :sort, [["いいねが多い順","likes"],
+                                 ["いいねが少ない順","dislikes"],
+                                 ] %>
+            <%= f.hidden_field :keyword,value: @keyword %>
+            <%= f.submit "並び替え",class: "btn btn-success btn-sm" %>
+        <% end %>
+    </div>
+    <%= render "posts",posts: @posts %>
+</div>

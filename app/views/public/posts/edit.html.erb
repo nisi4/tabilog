@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row mt-5 mb-4 d-flex justify-content-center">
+    <h2>ー　Tabiログ編集　ー</h2>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5 mr-5">
+      <%= form_with model: @post,url: public_post_path(@post.id),method: :patch do |f| %>
+      <table class="table table-borderless">
+        <colspan>
+          <col width="30%">
+          <col width="70%">
+        </colspan>
+        <tr>
+          <td class="align-middle text-right">Tabi画像</td>
+          <td><%= f.file_field :image,accept: "image/*" %></td>
+        </tr>
+        <!--seedファイルの市町村データから選択させる-->
+        <tr>
+          <td class="align-middle text-right">市町村名</td>
+          <td>
+            <%= f.text_field :town_name, list: "list-name",class: "form-control" %>
+            <datalist id="list-name">
+              <% @towns.each do |town| %>
+                <option value=<%= town.town_name %>>
+              <% end %>
+            </datalist>
+          </td>
+        </tr>
+        <!--seedファイルのカテゴリデータから選択させる-->
+        <tr>
+          <td class="align-middle text-right">カテゴリ</td>
+          <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">タイトル</td>
+          <td><%= f.text_field :title,class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="align-middle text-right">おすすめ度</td>
+          <!--おすすめ度javascript-->
+          <td>
+            <div id="post_raty"></div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+              let raty_elem = document.querySelector('#post_raty');
+              raty_elem.innerHTML = ""
+              let option = {  
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'post[star]',
+                };
+              raty(raty_elem,option);
+              });
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">思い出</td>
+          <td><%= f.text_area :body,class: "form-control" %></td>
+        </tr>
+      </table>
+      <div class="row mb-4 d-flex justify-content-center">
+        <%= f.submit "変更を保存",class: "btn btn-success text-white" %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <%= image_tag @post.image,class: "img-fluid" %>
+        <div class="card-body px-3 pb-3 pt-0">
+            <div class="row mb-2">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 col-sm-4 col-md-6">
+                            <% if user_signed_in? && @post.favorited_by?(current_user) %>
+                                <p class="mb-0">
+                                    <%= link_to unfavorite_path(@post.id),method: :delete,class: "text-dark",style: "text-decoration:none;" do %>
+                                        <span class="text-danger">♥</span><%= @post.favorites.count %>件
+                                    <% end %>
+                                </p>
+                            <% else %>
+                                <p class="mb-0">
+                                    <%= link_to favorite_path(@post.id),method: :post,class: "text-dark",style: "text-decoration:none;" do %>
+                                        ♡<%= @post.favorites.count %>件
+                                    <% end %>
+                                </p>
+                            <% end %>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-6">
+                            <i class="far fa-comment-dots"></i><%= @post.comments.count %>件
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 text-right">
+                    <%= link_to mypage_path(@post.user.id) do %>
+                        ＠<%= @post.user.user_name %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6 pr-0">
+                    <span class="card-title h4 font-weight-bold"><%= @post.title %></span>    
+                </div>
+                <div class="col-6 text-right pl-0">
+                    <span class="h6 align-bottom d-sm-none">おすすめ度：</span>
+                    <!--星型レビューを表示-->
+                    <span id="rate_<%= @post.id %>"></span>
+                    <script>
+                    $(document).on('turbolinks:load', function() {
+                        let raty_<%= @post.id %> = document.querySelector('#rate_<%= @post.id %>');
+                        rate_<%= @post.id %>.innerHTML = ""
+                        let option_<%= @post.id %> = {
+                            starOn: "<%= asset_path('star-on.png') %>",
+                            starOff: "<%= asset_path('star-off.png') %>",
+                            score: "<%= @post.star %>",
+                            readOnly: true,
+                          };
+                        raty(raty_<%= @post.id %> ,option_<%= @post.id %>);
+                    });
+                    </script>
+                    <!---------------------->
+                </div>
+            </div>
+            <p class="card-text"><%= @post.body %></p>
+            <small class="text-muted">市町村：<%= @post.town.town_name %>　カテゴリ：<%= @post.category.category_name %></small>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

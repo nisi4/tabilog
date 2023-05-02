@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-xl-5">
+            <div class="row my-4 d-flex justify-content-center">
+                <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
+            </div>
+            <div class="row mb-5">
+                <div class="col-6 col-md-5 col-lg-6 pl-md-3">
+                    <div class="row d-flex justify-content-center">
+                        <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %><br>
+                    </div>
+                    <div class="row mt-4 d-flex justify-content-center">
+                        <% if user_signed_in? && current_user.following?(@user) %>
+                            <%= link_to "フォローを外す", unfollow_path(@user.id),method: :delete,class: "btn btn-primary" %>
+                        <% elsif current_user.id != @user.id  %>
+                            <%= link_to "フォローする", follow_path(@user.id),method: :post,class: "btn btn-primary" %>
+                        <% else %>
+                            <button type="button" class="btn btn-primary" disabled>フォローする</button>
+                        <% end %>
+                        <table class="table table-borderless my-3 mx-4">
+                            <colspan>
+                                <col width="50%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colspan>
+                            <%= link_to following_path(@user.id) do %>
+                            <tr>
+                                <td>フォロー</td>
+                                <td>
+                                    <%= link_to following_path(@user.id) do %>
+                                        <%= @user.followings.count %>
+                                    <% end %>
+                                </td>
+                                <td>人</td>
+                            </tr>
+                            <% end %>
+                            <tr>
+                                <td>フォロワー</td>
+                                <td>
+                                    <%= link_to follower_path(@user.id) do %>
+                                        <%= @user.followers.count %>
+                                    <% end %>
+                                </td>
+                                <td>人</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-6 col-md-5 col-lg-6 pl-0 pr-4">
+                    <table class="table table-borderless mb-0">
+                        <colspan>
+                            <col width="50%">
+                            <col width="45%">
+                            <col width="5%">
+                        </colspan>
+                        <tr class="border-bottom">
+                            <td>Tabi人：</td>
+                            <td colspan="2"><%= @user.user_name %></td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>投稿数：</td>
+                            <td align="center"><%= @posts.total_count %></td>
+                            <td>件</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td>訪問数：</td>
+                            <td align="center"><%= @visit_town %></td>
+                            <td>/179</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td colspan="3">自己紹介：</td>
+                        </tr>
+                        <tr class="border">
+                            <td height="120" colspan="3"><%= @user.introduction %></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-7">
+            <% if @user.released? || @user.following?(current_user) %>
+                <%= render 'user_posts',posts: @posts %>
+            <% else %>
+                <%= render "public/posts/secretposts" %>
+            <% end %>
+        </div>
+    </div>
+</div>

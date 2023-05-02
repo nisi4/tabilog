@@ -8,9 +8,66 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Prata&family=Train+One&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body style="background-color:#fff8dc;">
+    <header>
+      <div class="container-fluid">
+        <div class="row my-2 d-flex justify-content-between">
+          <div class="col-2 ml-5">
+            <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
+              <%= image_tag "TABI5.png",class: "tabilogo",alt: "Tabiログ",width: "120px" %>
+            <% end %>
+          </div>
+          <div class="col-8 d-flex justify-content-end align-items-center mr-4 mr-sm-5 px-0">
+            <div>
+            <!--ユーザーでログイン中-->
+            <% if user_signed_in? %>
+              <%= link_to destroy_user_session_path,method: :delete,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Logout<span/>
+              <% end %>
+              <%= link_to root_path,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Home<span/>
+              <% end %>
+              <%= link_to mypage_show_path(current_user.id),class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-user mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">MyPage<span/>
+              <% end %>
+              <%= link_to new_public_post_path,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-edit mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">NewPost<span/>
+              <% end %>
+            <!--管理者でログイン中-->
+            <% elsif admin_signed_in? %>
+              <%= link_to destroy_admin_session_path,method: :delete,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-sign-out-alt mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Logout<span/>
+              <% end %>
+              <%= link_to admin_path,class: "text-dark",style: "text-decoration:none;", "data-turbolinks": "false" do %>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Home<span/>
+              <% end %>
+              <%= link_to admin_users_path,class: "text-dark",style: "text-decoration:none;" do %>
+                <i class="fas fa-users mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Users<span/>
+              <% end %>
+            <!--ログアウト中-->
+            <% else %>
+              <%= link_to user_session_path,class: "text-dark",style: "text-decoration:none;" do %>
+                <i class="fas fa-sign-in-alt mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Login<span/>
+              <% end %>
+              <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
+                <i class="fas fa-home mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Home<span/>
+              <% end %>
+              <%= link_to user_session_path,class: "text-dark",style: "text-decoration:none;" do %>
+                <i class="fas fa-user mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">Mypage<span/>
+              <% end %>
+              <%= link_to user_session_path,class: "text-dark",style: "text-decoration:none;" do %>
+                <i class="fas fa-edit mx-2" style="font-size:2rem;"></i><span class="h3 d-none d-lg-inline-block">NewPost<span/>
+              <% end %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
