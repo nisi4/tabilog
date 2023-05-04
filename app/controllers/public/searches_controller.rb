@@ -1,3 +1,3 @@
-class SearchesController < ApplicationController
+class Public::SearchesController < ApplicationController
 
 end
