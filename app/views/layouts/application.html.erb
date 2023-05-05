@@ -16,12 +16,12 @@
     <header>
       <div class="container-fluid">
         <div class="row my-2 d-flex justify-content-between">
-          <div class="col-2 ml-5">
+          <div class="col-2 ml-sm-5">
             <%= link_to root_path,class: "text-dark",style: "text-decoration:none;" do %>
               <%= image_tag "TABI5.png",class: "tabilogo",alt: "Tabiログ",width: "120px" %>
             <% end %>
           </div>
-          <div class="col-8 d-flex justify-content-end align-items-center mr-4 mr-sm-5 px-0">
+          <div class="col-8 d-flex justify-content-end align-items-center mr-sm-5 px-0">
             <div>
             <!--ユーザーでログイン中-->
             <% if user_signed_in? %>
