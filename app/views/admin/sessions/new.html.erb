@@ -3,20 +3,14 @@
     <h2>ー　管理者ログイン　ー</h2>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="col-sm-8 col-md-6 mr-3">
+    <div class="col-sm-6 col-md-4">
       <%= form_with model: @admin,url: new_admin_session_path,method: :post do |f| %>
       <table class="table table-borderless">
-        <colspan>
-          <col width="30%">
-          <col width="70%">
-        </colspan>
         <tr>
-          <td class="align-middle text-right">メールアドレス</td>
-          <td><%= f.email_field :email,class: "form-control" %></td>
+          <td><%= f.email_field :email,placeholder: "メールアドレス",class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="align-middle text-right">パスワード</td>
-          <td><%= f.password_field :password,class: "form-control" %></td>
+          <td><%= f.password_field :password,placeholder: "パスワード",class: "form-control" %></td>
         </tr>
       </table>
       <div class="row mb-4 d-flex justify-content-center">
