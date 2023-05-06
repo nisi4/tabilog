@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6 col-xl-5">
             <div class="row my-4 d-flex justify-content-center">
-                <h3>ー　<%= @user.user_name %>さんのTabiログ　ー</h3>
+                <h4>ー　<%= @user.user_name %>さんのTabiログ　ー</h4>
             </div>
             <div class="row mb-5">
                 <div class="col-6 col-md-5 col-lg-6 pl-md-3">
@@ -17,61 +17,46 @@
                         <% else %>
                             <button type="button" class="btn btn-primary" disabled>フォローする</button>
                         <% end %>
-                        <table class="table table-borderless my-3 mx-4">
-                            <colspan>
-                                <col width="50%">
-                                <col width="25%">
-                                <col width="25%">
-                            </colspan>
-                            <%= link_to following_path(@user.id) do %>
-                            <tr>
-                                <td>フォロー</td>
-                                <td>
-                                    <%= link_to following_path(@user.id) do %>
-                                        <%= @user.followings.count %>
-                                    <% end %>
-                                </td>
-                                <td>人</td>
-                            </tr>
-                            <% end %>
-                            <tr>
-                                <td>フォロワー</td>
-                                <td>
-                                    <%= link_to follower_path(@user.id) do %>
-                                        <%= @user.followers.count %>
-                                    <% end %>
-                                </td>
-                                <td>人</td>
-                            </tr>
-                        </table>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-4">
+                        フォロー：
+                        <%= link_to following_path(@user.id) do %>
+                            <span class="px-2"><%= @user.followings.count %></span>
+                        <% end %>
+                        人
+                    </div>
+                    <div class="row d-flex justify-content-center my-3">
+                        フォロワー：
+                        <%= link_to follower_path(@user.id) do %>
+                            <span class="px-2"><%= @user.followers.count %></span>
+                        <% end %>
+                        人
                     </div>
                 </div>
-                <div class="col-6 col-md-5 col-lg-6 pl-0 pr-4">
+                <div class="col-6 col-sm-5 col-lg-6 col-xl-5 pl-0 pr-sm-4">
                     <table class="table table-borderless mb-0">
-                        <colspan>
-                            <col width="50%">
-                            <col width="45%">
-                            <col width="5%">
-                        </colspan>
                         <tr class="border-bottom">
-                            <td>Tabi人：</td>
-                            <td colspan="2"><%= @user.user_name %></td>
+                            <td colspan="3">Tabi人：<%= @user.user_name %></td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>投稿数：</td>
-                            <td align="center"><%= @posts.total_count %></td>
+                            <td colspan="2">
+                                投稿数：
+                                <span class="pl-2 pl-sm-4"><%= @posts.total_count %></span>
+                            </td>
                             <td>件</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td>訪問数：</td>
-                            <td align="center"><%= @visit_town %></td>
+                            <td colspan="2">
+                                訪問数：
+                                <span class="pl-2 pl-sm-4"><%= @visit_town %></span>
+                            </td>
                             <td>/179</td>
                         </tr>
                         <tr class="border-bottom">
                             <td colspan="3">自己紹介：</td>
                         </tr>
                         <tr class="border">
-                            <td height="120" colspan="3"><%= @user.introduction %></td>
+                            <td height="120" colspan="3" class="p-2"><%= @user.introduction %></td>
                         </tr>
                     </table>
                 </div>

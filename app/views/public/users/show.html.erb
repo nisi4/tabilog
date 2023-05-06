@@ -6,12 +6,12 @@
             </div>
             <div class="row mb-5">
                 <div class="col-5 col-md-5 col-lg-5">
-                    <div class="row mt-3 d-flex justify-content-center">
+                    <div class="row mt-3 d-flex justify-content-center justify-content-sm-end mr-sm-3">
                         <%= link_to mypage_path(@user.id) do %>
                             <%= image_tag @user.get_profile_image(150,150),class: "rounded-circle" %>
                         <% end %>
                     </div>
-                    <div class="row d-flex justify-content-center">
+                    <div class="row d-flex justify-content-center justify-content-sm-end mr-sm-3">
                         <div class="btn-group-vertical mt-5">
                             <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-outline-secondary" %>
                             <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-outline-secondary","data-turbolinks": "false" %>
@@ -24,49 +24,57 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-7 col-md-5 col-lg-7 pl-0 pr-4">
+                <div class="col-7 col-sm-5 col-md-4 col-lg-7 col-xl-5 pl-0 ml-xl-5 mr-xl-4 pr-md-4">
                     <table class="table table-borderless mb-0">
                         <tr class="border-bottom">
-                            <td>Tabi人：</td>
-                            <td colspan="2">
+                            <td colspan="3">
+                                Tabi人：
                                 <%= link_to mypage_path(@user.id),class: "text-dark",style: "text-decoration:none;" do %>
                                     <%= @user.user_name %>
                                 <% end %>
                             </td>
                         </tr>
                         <tr class="border-bottom">
-                            <td width="40%">投稿数：</td>
-                            <td width="55%" align="center"><%= @posts.total_count %></td>
-                            <td width="5%">件</td>
-                        </tr>
-                        <tr class="border-bottom">
-                            <td width="40%">訪問数：</td>
-                            <td width="55%" align="center"><%= @visit_town %></td>
-                            <td width="5%">/179</td>
-                        </tr>
-                        <tr class="border-bottom">
-                            <td width="45%">フォロー：</td>
-                            <td width="50%" align="center">
-                                <%= link_to following_path(@user.id) do %>
-                                    <%= @user.followings.count %>
-                                <% end %>
+                            <td colspan="2">
+                                投稿数：
+                                <span class="pl-4"><%= @posts.total_count %></span>
                             </td>
-                            <td width="5%">人</td>
+                            <td>件</td>
                         </tr>
                         <tr class="border-bottom">
-                            <td width="50%">フォロワー：</td>
-                            <td width="45%" align="center">
-                                <%= link_to follower_path(@user.id) do %>
-                                    <%= @user.followers.count %>
-                                <% end %>
+                            <td colspan="2">
+                                訪問数：
+                                <span class="pl-4"><%= @visit_town %></span>
                             </td>
-                            <td width="5%">人</td>
+                            <td>/179</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td colspan="2">
+                                フォロー：
+                                <span class="pl-4">
+                                    <%= link_to following_path(@user.id) do %>
+                                        <%= @user.followings.count %>
+                                    <% end %>
+                                </span>
+                            </td>
+                            <td>人</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <td colspan="2">
+                                フォロワー：
+                                <span class="pl-2">
+                                    <%= link_to follower_path(@user.id) do %>
+                                        <%= @user.followers.count %>
+                                    <% end %>
+                                </span>
+                            </td>
+                            <td>人</td>
                         </tr>
                         <tr class="border-bottom">
                             <td colspan="3">自己紹介：</td>
                         </tr>
                         <tr class="border">
-                            <td height="120" colspan="3"><%= @user.introduction %></td>
+                            <td height="100" colspan="3" class="p-2"><%= @user.introduction %></td>
                         </tr>
                     </table>
                 </div>
