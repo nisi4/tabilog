@@ -3,11 +3,11 @@
         <span class="h2">ー　フォロワーリスト　ー</span>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-10">
+        <div class="col-sm-8 col-md-6 col-xl-4">
             <table class="table table-bordered">
                 <% @users.each do |user| %>
                 <tr>
-                    <td class="align-middle text-center">
+                    <td class="align-middle text-left">
                         <%= link_to mypage_path(user.id),class: "text-dark",style: "text-decoration:none;" do %>
                         <%= image_tag user.get_profile_image(50,50),class: "rounded-circle" %>　<%= user.user_name %>
                         <% end %>
@@ -17,7 +17,7 @@
                             <% if current_user.following?(user) %>
                                 フォロー中
                             <% else %>
-                                <%= link_to "フォローする", follow_path(user.id),method: :post,class: "btn btn-primary" %>
+                                <%= link_to "フォローする", follow_path(user.id),method: :post,class: "btn btn-primary btn-sm" %>
                             <% end %>
                         </td>
                     <% end %>
