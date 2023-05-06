@@ -3,21 +3,16 @@
     <h2>ー　Tabiログ編集　ー</h2>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="col-md-5 mr-5">
+    <div class="col-sm-8 col-md-5 col-lg-4 col-xl-3">
       <%= form_with model: @post,url: public_post_path(@post.id),method: :patch do |f| %>
       <table class="table table-borderless">
-        <colspan>
-          <col width="30%">
-          <col width="70%">
-        </colspan>
         <tr>
-          <td class="align-middle text-right">Tabi画像</td>
-          <td><%= f.file_field :image,accept: "image/*" %></td>
+          <td>Tabi画像<br><%= f.file_field :image,accept: "image/*",class: "form-control-file" %></td>
         </tr>
         <!--seedファイルの市町村データから選択させる-->
         <tr>
-          <td class="align-middle text-right">市町村名</td>
           <td>
+            市町村名<br>
             <%= f.text_field :town_name, list: "list-name",class: "form-control" %>
             <datalist id="list-name">
               <% @towns.each do |town| %>
@@ -28,17 +23,15 @@
         </tr>
         <!--seedファイルのカテゴリデータから選択させる-->
         <tr>
-          <td class="align-middle text-right">カテゴリ</td>
-          <td><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
+          <td>カテゴリ<br><%= f.collection_select(:category_id,@categories,:id,:category_name,{prompt: "--カテゴリを選択してください--"},class: "form-control") %></td>
         </tr>
         <tr>
-          <td class="align-middle text-right">タイトル</td>
-          <td><%= f.text_field :title,class: "form-control" %></td>
+          <td>タイトル<br><%= f.text_field :title,class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="align-middle text-right">おすすめ度</td>
           <!--おすすめ度javascript-->
           <td>
+            おすすめ度<br>
             <div id="post_raty"></div>
             <script>
               $(document).on('turbolinks:load', function() {
@@ -55,8 +48,7 @@
           </td>
         </tr>
         <tr>
-          <td class="text-right">思い出</td>
-          <td><%= f.text_area :body,class: "form-control" %></td>
+          <td>思い出<br><%= f.text_area :body,class: "form-control" %></td>
         </tr>
       </table>
       <div class="row mb-4 d-flex justify-content-center">
@@ -64,14 +56,14 @@
       </div>
       <% end %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-5 col-xl-4">
       <div class="card h-100">
         <%= image_tag @post.image,class: "img-fluid" %>
         <div class="card-body px-3 pb-3 pt-0">
             <div class="row mb-2">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="row">
-                        <div class="col-4 col-sm-4 col-md-6">
+                        <span class="ml-3 mr-2">
                             <% if user_signed_in? && @post.favorited_by?(current_user) %>
                                 <p class="mb-0">
                                     <%= link_to unfavorite_path(@post.id),method: :delete,class: "text-dark",style: "text-decoration:none;" do %>
@@ -85,13 +77,13 @@
                                     <% end %>
                                 </p>
                             <% end %>
-                        </div>
-                        <div class="col-4 col-sm-4 col-md-6">
+                        </span>
+                        <span class="mx-2">
                             <i class="far fa-comment-dots"></i><%= @post.comments.count %>件
-                        </div>
+                        </span>
                     </div>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-7 text-right">
                     <%= link_to mypage_path(@post.user.id) do %>
                         ＠<%= @post.user.user_name %>
                     <% end %>
@@ -102,7 +94,6 @@
                     <span class="card-title h4 font-weight-bold"><%= @post.title %></span>    
                 </div>
                 <div class="col-6 text-right pl-0">
-                    <span class="h6 align-bottom d-sm-none">おすすめ度：</span>
                     <!--星型レビューを表示-->
                     <span id="rate_<%= @post.id %>"></span>
                     <script>
