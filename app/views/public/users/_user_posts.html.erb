@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col">
                         <%= link_to "編集",edit_public_post_path(post.id),class: "btn btn-success","data-turbolinks": "false" %>    
-                        <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger" %>    
+                        <%= link_to "削除",public_post_path(post.id),method: :delete,class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %>    
                     </div>
                 </div>
                 <% end %>
