@@ -9,8 +9,6 @@ class Post < ApplicationRecord
     has_many :comments,dependent: :destroy
     
     validates :image,presence: true
-    validates :town_id,presence: true
-    validates :category_id,presence: true
     validates :title,presence: true
     validates :star,presence: true
     

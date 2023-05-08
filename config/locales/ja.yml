@@ -4,3 +4,19 @@ ja:
    status:
     false: "有効"
     true: "停止"
+    
+ activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            image: 
+              blank: "：選択されていません"
+            title: 
+              blank: "：空白です"
+            star: 
+              blank: "：１以上の評価をしてください"
+            town:
+              required: "：選択されていません"
+            category:
+              required: "：選択されていません"
