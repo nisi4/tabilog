@@ -7,12 +7,15 @@ class Public::CommentsController < ApplicationController
     end
     
     def create
-        post = Post.find(params[:post_id])
-        comment = Comment.new(post_comment_params)
-        comment.user_id = current_user.id
-        comment.post_id = post.id
-        comment.save
-        redirect_to request.referer
+        @post = Post.find(params[:post_id])
+        @comment = Comment.new(post_comment_params)
+        @comment.user_id = current_user.id
+        @comment.post_id = @post.id
+        if @comment.save
+            redirect_to request.referer
+        else
+            render :index
+        end
     end
     
     def destroy

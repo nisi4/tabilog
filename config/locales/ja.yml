@@ -13,10 +13,14 @@ ja:
             image: 
               blank: "：選択されていません"
             title: 
-              blank: "：空白です"
+              blank: "：空欄です"
             star: 
               blank: "：１以上の評価をしてください"
             town:
               required: "：選択されていません"
             category:
               required: "：選択されていません"
+        comment:
+          attributes:
+            comment:
+              blank: ":空欄です"
