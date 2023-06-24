@@ -16,7 +16,10 @@ class Public::CommentsController < ApplicationController
     end
     
     def destroy
-        Comment.find(params[:id]).destroy
+        comment = Comment.find(params[:id])
+        if comment.user_id = current_user.id
+            comment.destroy    
+        end
         redirect_to request.referer
     end
     
