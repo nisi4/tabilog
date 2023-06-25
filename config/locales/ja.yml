@@ -1,25 +1,25 @@
 ja:
- enum:
-  user:
-   status:
-    false: "有効"
-    true: "停止"
+  enum:
+    user:
+      status:
+        false: "有効"
+        true: "停止"
     
- activerecord:
+  activerecord:
     errors:
       models:
         post:
           attributes:
             image: 
               blank: "：選択されていません"
+            town:
+              blank: "：空欄です"
+            category:
+              blank: "：選択されていません"
             title: 
               blank: "：空欄です"
             star: 
               blank: "：１以上の評価をしてください"
-            town:
-              required: "：選択されていません"
-            category:
-              required: "：選択されていません"
         comment:
           attributes:
             comment:

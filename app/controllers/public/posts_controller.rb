@@ -73,14 +73,20 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    if town_exist = Town.find_by(town_name: @post.town_name)
-      @post.update(town_id: town_exist.id)
+    if @post.update(post_params)
+      if town_exist = Town.find_by(town_name: @post.town_name)
+        @post.update(town_id: town_exist.id)
+      else
+        @post.update(town_id: nil)
+      end
+      user_id = current_user.id
+      redirect_to mypage_show_path(user_id)
     else
-      @post.update(town_id: nil)
+      @town = Town.find(@post.town_id)
+      @towns = Town.all
+      @categories = Category.all
+      render :edit
     end
-    user_id = current_user.id
-    redirect_to mypage_show_path(user_id)
   end
   
   def destroy
