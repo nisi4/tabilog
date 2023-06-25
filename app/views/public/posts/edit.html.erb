@@ -13,7 +13,7 @@
         <tr>
           <td>
             市町村名<br>
-            <%= f.text_field :town_name, list: "list-name",class: "form-control" %>
+            <%= f.text_field :town_name, list: "list-name",class: "form-control",placeholder: @town.town_name %>
             <datalist id="list-name">
               <% @towns.each do |town| %>
                 <option value=<%= town.town_name %>>

@@ -66,6 +66,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @town = Town.find(@post.town_id)
     @towns = Town.all
     @categories = Category.all
   end
