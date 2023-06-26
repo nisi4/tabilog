@@ -13,14 +13,24 @@
                     </div>
                     <div class="row d-flex justify-content-center justify-content-sm-end mr-sm-3">
                         <div class="btn-group-vertical mt-5">
-                            <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "btn btn-outline-secondary" %>
-                            <%= link_to "お気に入り",user_favorites_path(@user.id),class: "btn btn-outline-secondary","data-turbolinks": "false" %>
+                            <button type="btn" class="btn btn-outline-secondary">
+                                <%= link_to "プロフィール編集",mypage_edit_path(@user.id),class: "text-dark",style: "text-decoration:none;" %>
+                            </button>
+                            <button type="btn" class="btn btn-outline-secondary">
+                                <%= link_to "お気に入り",user_favorites_path(@user.id),"data-turbolinks": "false",class: "text-dark",style: "text-decoration:none;" %>
+                            </button>
                             <% if @user.released? %>
-                                <%= link_to "非公開にする",mypage_nonrelease_path(@user.id),method: :patch,class: "btn btn-outline-secondary" %>
+                                <button type="btn" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="フォロワーのみに公開">
+                                    <%= link_to "非公開にする",mypage_nonrelease_path(@user.id),method: :patch,class: "text-dark",style: "text-decoration:none;" %>
+                                </button>
                             <% else %>
-                                <%= link_to "公開にする",mypage_release_path(@user.id),method: :patch,class: "btn btn-outline-secondary" %>
+                                <button type="btn" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="全ての人に公開">
+                                    <%= link_to "公開にする",mypage_release_path(@user.id),method: :patch,class: "text-dark",style: "text-decoration:none;"%>
+                                </button>
                             <% end %>
-                            <%= link_to "退会する",mypage_leave_path(@user.id),method: :patch,class: "btn btn-outline-secondary","data-confirm" => "本当に退会しますか？" %>
+                            <button type="btn" class="btn btn-outline-secondary">
+                                <%= link_to "退会する",mypage_leave_path(@user.id),method: :patch,"data-confirm" => "本当に退会しますか？",class: "text-dark",style: "text-decoration:none;" %>
+                            </button>
                         </div>
                     </div>
                 </div>
