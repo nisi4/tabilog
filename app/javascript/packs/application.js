@@ -22,6 +22,7 @@ import "bootstrap";
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/js/all"
 import "release.js";
+import "script.js";
 
 Rails.start()
 Turbolinks.start()
