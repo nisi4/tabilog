@@ -1,0 +1,9 @@
+require:
+ - rubocop-airbnb
+.rubocop.yml
+
+inherit_from:
+ - .rubocop_airbnb.yml
+
+Rails:
+ Enabled: true

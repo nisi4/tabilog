@@ -1,0 +1,13 @@
+<% if user_signed_in? && post.favorited_by?(current_user) %>
+    <p class="mb-0">
+        <%= link_to unfavorite_path(post.id),method: :delete,class: "text-dark",style: "text-decoration:none;",remote: true do %>
+            <span class="text-danger">♥</span><%= post.favorites.count %>件
+        <% end %>
+    </p>
+<% else %>
+    <p class="mb-0">
+        <%= link_to favorite_path(post.id),method: :post,class: "text-dark",style: "text-decoration:none;",remote: true do %>
+            ♡<%= post.favorites.count %>件
+        <% end %>
+    </p>
+<% end %>
