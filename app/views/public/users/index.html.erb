@@ -12,7 +12,7 @@
                     <div class="row mt-4 d-flex justify-content-center">
                         <% if user_signed_in? && current_user.following?(@user) %>
                             <%= link_to "フォローを外す", unfollow_path(@user.id),method: :delete,class: "btn btn-primary" %>
-                        <% elsif current_user.id != @user.id  %>
+                        <% elsif user_signed_in? && current_user.id != @user.id  %>
                             <%= link_to "フォローする", follow_path(@user.id),method: :post,class: "btn btn-primary" %>
                         <% else %>
                             <button type="button" class="btn btn-primary" disabled>フォローする</button>
