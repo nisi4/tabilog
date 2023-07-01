@@ -17,4 +17,13 @@ body{
     position: fixed;
     right: 20px;
     bottom: 20px;
+    z-index: 3;
+}
+
+.page {
+    z-index: 1;
+}
+
+.card-deck {
+    z-index: 5;
 }
