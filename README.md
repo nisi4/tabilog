@@ -9,7 +9,7 @@
   観光やグルメなどのネット情報が極端に少なくなり不便に感じていました。
   旅行者などがその街で「どこを訪れて何をしたか」という情報を市町村ごとに集約することができれば、
   その街での過ごし方の選択肢が増え、新たな旅行者が増えるきっかけになると思い、このテーマにしました。<br>
-  北海道にはまだまだ知られていない魅力的な場所がたくさんあるので、このサイトを通じて、北海道を遊び尽くしていただければ幸いです。
+  北海道にはまだまだ知られていない魅力的な場所がたくさんありので、このサイトを通じて、北海道を遊び尽くしていただければ幸いです。
 
 ### ターゲットユーザ
   旅好きな人、北海道が好きな人
@@ -29,7 +29,7 @@
 
 ## 使用素材
 - GoogleMap
-- 「Hokkaido Government Opendata CC-BY4.0（https://creativecommons.org/licenses/by/4.0/deed.ja）」
+- 「Hokkaido Government Opendata CC-BY4.0（https://www.harp.lg.jp/opendata/dataset/1379.html）」
 
 ## 実装機能リスト
 <https://docs.google.com/spreadsheets/d/1vWwrm6OAVSfeodxhnzGR_otIdRpqCswTNe4AtGh27iI/edit?usp=sharing>
